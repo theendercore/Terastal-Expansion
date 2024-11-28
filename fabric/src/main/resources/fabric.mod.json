@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "cobblemon_fabric_mdk",
+  "version": "1.0.0",
+  "name": "Cobblemon Fabric MDK",
+  "description": "A MDK useful for Fabric Development",
+  "authors": [
+    "The Cobblemon Team"
+  ],
+  "license": "MPL-2.0",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.cobblemon.fabric.example.FabricModExample"
+    ]
+  },
+  "depends": {
+    "java": ">=17",
+    "minecraft": ">=1.20.1",
+    "fabricloader": ">=0.14.21",
+    "fabric": "*",
+    "cobblemon": ">=1.4.0"
+  }
+}
