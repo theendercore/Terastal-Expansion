@@ -1,11 +1,12 @@
-modLoader = "javafml"
-loaderVersion = "[4,)"
+modLoader = "kotlinforforge"
+loaderVersion = "[1,)"
 license = "${license}"
 
 [[mods]]
 modId = "${mod_id}"
 version = "${version}"
 displayName = "${mod_name}"
+logoFile = "${mod_id}.png"
 description = '''${description}'''
 
 [[dependencies.${mod_id}]]
@@ -19,6 +20,13 @@ side = "BOTH"
 modId = "forge"
 mandatory = true
 versionRange = "${forge_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "kotlinforforge"
+mandatory = true
+versionRange = "[4.0.0,)"
 ordering = "NONE"
 side = "BOTH"
 
