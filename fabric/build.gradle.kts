@@ -17,22 +17,25 @@ loom {
     }
 }
 
+val minecraft_version: String by project
+val cobblemon_version: String by project
+val emi_version: String by project
+
+val fabric_loader_version: String by project
+val fabric_version: String by project
+
 dependencies {
-    minecraft("net.minecraft:minecraft:${cobblemon_version}")
+    minecraft("net.minecraft:minecraft:${minecraft_version}")
     mappings(loom.officialMojangMappings())
     modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
 
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
-//    modImplementation(fabricApi.module("fabric-command-api-v2", "0.100.7+1.21"))
     modImplementation("com.cobblemon:fabric:${cobblemon_version}")
 
     implementation(project(":common", configuration = "namedElements"))
     "developmentFabric"(project(":common", configuration = "namedElements"))
 
-//    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
-//    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
+    modImplementation("com.terraformersmc:modmenu:7.1.0")
+//    modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
+    modLocalRuntime ("dev.emi:emi-fabric:${emi_version}")
 }
-
-//tasks.getByName<Test>("test") {
-//    useJUnitPlatform()
-//}

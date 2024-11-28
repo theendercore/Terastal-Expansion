@@ -9,6 +9,6 @@ pluginManagement {
 
 
 
-//include("common")
-//include("forge")
+include("common")
 //include("fabric")
+include("forge")

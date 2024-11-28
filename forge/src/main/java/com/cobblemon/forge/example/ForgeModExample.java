@@ -1,16 +1,18 @@
 package com.cobblemon.forge.example;
 
 import com.cobblemon.common.example.ExampleCommandRegistry;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+import static net.minecraftforge.common.MinecraftForge.EVENT_BUS;
 
 @Mod("cobblemon_forge_mdk")
 public class ForgeModExample {
 
     public ForgeModExample() {
-        NeoForge.EVENT_BUS.register(this);
+        EVENT_BUS.register(this);
+
     }
 
     @SubscribeEvent

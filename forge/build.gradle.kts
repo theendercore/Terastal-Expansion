@@ -21,6 +21,13 @@ repositories {
     maven("https://thedarkcolour.github.io/KotlinForForge/")
 }
 
+val minecraft_version: String by project
+val cobblemon_version: String by project
+val emi_version: String by project
+
+val forge_version: String by project
+val forge_kotlin_version: String by project
+
 dependencies {
     minecraft("net.minecraft:minecraft:${minecraft_version}")
     mappings(loom.officialMojangMappings())
@@ -28,22 +35,15 @@ dependencies {
 
 
     implementation(project(":common", configuration = "namedElements"))
-    "developmentNeoForge"(project(":common", configuration = "namedElements")) {
+    "developmentForge"(project(":common", configuration = "namedElements")) {
         isTransitive = false
     }
 
-
-
-    modImplementation("com.cobblemon:neoforge:${cobblemon_version}")
+    modImplementation("com.cobblemon:forge:${cobblemon_version}")
     //Needed for cobblemon
-    modImplementation("thedarkcolour:kotlinforforge:${forge_kotlin_version}")
+    runtimeOnly("thedarkcolour:kotlinforforge:${forge_kotlin_version}")
+    implementation("thedarkcolour:kotlinforforge:${forge_kotlin_version}")
 
-//    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
-//    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
+    //    modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
+    modLocalRuntime ("dev.emi:emi-forge:${emi_version}")
 }
-
-/*
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
-}
-*/
