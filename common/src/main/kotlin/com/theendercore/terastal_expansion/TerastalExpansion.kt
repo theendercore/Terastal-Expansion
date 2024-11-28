@@ -1,11 +1,10 @@
 package com.theendercore.terastal_expansion
 
-import com.theendercore.terastal_expansion.TeraConst.log
-//import com.theendercore.terastal_expansion.platform.Services
+import com.theendercore.terastal_expansion.misc.TeraImplementation
 
 object TerastalExpansion {
     @JvmStatic
-    fun init() {
-        log.info("Hello from exit")
+    fun init(impl: TeraImplementation) {
+        impl.registerItems()
     }
 }

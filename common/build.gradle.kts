@@ -7,10 +7,11 @@ plugins {
 
 val minecraft_version: String by project
 val cobblemon_version: String by project
+val yarn_version: String by project
 
 dependencies {
     minecraft("com.mojang:minecraft:$minecraft_version")
-    mappings(loom.officialMojangMappings())
+    mappings("net.fabricmc:yarn:${yarn_version}:v2")
     modCompileOnly("com.cobblemon:mod:${cobblemon_version}") {
         isTransitive = false
     }

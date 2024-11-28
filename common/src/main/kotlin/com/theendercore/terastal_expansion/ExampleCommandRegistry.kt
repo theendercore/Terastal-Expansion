@@ -2,14 +2,8 @@ package com.theendercore.terastal_expansion
 
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.mojang.brigadier.CommandDispatcher
-import net.minecraft.commands.CommandBuildContext
-import net.minecraft.commands.CommandSourceStack
-import net.minecraft.commands.Commands
-import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.Style
-import net.minecraft.resources.ResourceLocation
 
-object ExampleCommandRegistry {
+/*object ExampleCommandRegistry {
     fun registerCommands(
         dispatcher: CommandDispatcher<CommandSourceStack>,
         context: CommandBuildContext,
@@ -25,4 +19,4 @@ object ExampleCommandRegistry {
             0
         })
     }
-}
+}*/

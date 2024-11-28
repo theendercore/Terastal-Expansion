@@ -24,13 +24,14 @@ repositories {
 val minecraft_version: String by project
 val cobblemon_version: String by project
 val emi_version: String by project
+val yarn_version: String by project
 
 val forge_version: String by project
 val forge_kotlin_version: String by project
 
 dependencies {
     minecraft("net.minecraft:minecraft:${minecraft_version}")
-    mappings(loom.officialMojangMappings())
+    mappings("net.fabricmc:yarn:${yarn_version}:v2")
     forge("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
 
 
