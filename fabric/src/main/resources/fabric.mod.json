@@ -1,13 +1,11 @@
 {
   "schemaVersion": 1,
-  "id": "cobblemon_fabric_mdk",
-  "version": "1.0.0",
-  "name": "Cobblemon Fabric MDK",
-  "description": "A MDK useful for Fabric Development",
-  "authors": [
-    "The Cobblemon Team"
-  ],
-  "license": "MPL-2.0",
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "${description}",
+  "authors": ["${mod_author}"],
+  "license": "${license}",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -16,9 +14,9 @@
   },
   "depends": {
     "java": ">=17",
-    "minecraft": ">=1.20.1",
-    "fabricloader": ">=0.14.21",
+    "minecraft": "*",
+    "fabricloader": "*",
     "fabric": "*",
-    "cobblemon": ">=1.4.0"
+    "cobblemon": ">=1.5.0"
   }
 }
