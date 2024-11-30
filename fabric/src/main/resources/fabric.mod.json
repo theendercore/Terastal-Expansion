@@ -13,6 +13,12 @@
         "adapter": "kotlin",
         "value": "com.theendercore.terastal_expansion.fabric.TerastalExpansionFabric"
       }
+    ],
+    "fabric-datagen": [
+      {
+        "adapter": "kotlin",
+        "value": "com.theendercore.terastal_expansion.fabric.data.gen.TerastalData"
+      }
     ]
   },
   "depends": {

@@ -31,6 +31,8 @@ val yarn_version: String by project
 val forge_version: String by project
 val forge_kotlin_version: String by project
 
+sourceSets["main"].resources.srcDir("../generated")
+
 dependencies {
     minecraft("net.minecraft:minecraft:${minecraft_version}")
     mappings("net.fabricmc:yarn:${yarn_version}:v2")

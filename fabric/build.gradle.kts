@@ -8,12 +8,24 @@ architectury {
     fabric()
 }
 
+val mod_id: String by project
 loom {
     enableTransitiveAccessWideners.set(true)
     silentMojangMappingsLicense()
 
     mixin {
         defaultRefmapName.set("mixins.${project.name}.refmap.json")
+    }
+
+    runs {
+        create("DataGen") {
+            client()
+            ideConfigGenerated(true)
+            vmArg("-Dfabric-api.datagen")
+            vmArg("-Dfabric-api.datagen.output-dir=${file("../generated")}")
+            vmArg("-Dfabric-api.datagen.modid=${mod_id}")
+            runDir("build/datagen")
+        }
     }
 }
 
@@ -25,6 +37,8 @@ val yarn_version: String by project
 val fabric_loader_version: String by project
 val fabric_version: String by project
 val fabric_kotlin_version: String by project
+
+sourceSets["main"].resources.srcDir("../generated")
 
 dependencies {
     minecraft("net.minecraft:minecraft:${minecraft_version}")
@@ -41,5 +55,5 @@ dependencies {
 
     modImplementation("com.terraformersmc:modmenu:7.1.0")
 //    modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
-    modLocalRuntime ("dev.emi:emi-fabric:${emi_version}")
+    modLocalRuntime("dev.emi:emi-fabric:${emi_version}")
 }
