@@ -3,6 +3,7 @@ package com.theendercore.terastal_expansion.init.misc
 import com.cobblemon.mod.common.CobblemonSounds
 import net.minecraft.block.AbstractBlock
 import net.minecraft.block.enums.Instrument
+import net.minecraft.block.piston.PistonBehavior
 
 object TerastalBlockProperties {
 
@@ -11,4 +12,10 @@ object TerastalBlockProperties {
         .sounds(CobblemonSounds.TUMBLESTONE_BLOCK_SOUNDS)
         .requiresTool()
         .instrument(Instrument.BASEDRUM)
+
+    val TERA_CLUSTER_PROPERTIES = AbstractBlock.Settings.create()
+        .pistonBehavior(PistonBehavior.DESTROY)
+        .nonOpaque()
+        .strength(1.5F)
+        .sounds(CobblemonSounds.TUMBLESTONE_SOUNDS)
 }

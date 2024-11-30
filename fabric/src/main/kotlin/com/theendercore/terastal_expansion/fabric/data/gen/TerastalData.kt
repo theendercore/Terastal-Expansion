@@ -1,5 +1,6 @@
 package com.theendercore.terastal_expansion.fabric.data.gen
 
+import com.cobblemon.mod.common.block.TumblestoneBlock
 import com.theendercore.terastal_expansion.init.TerastalBlocks
 import com.theendercore.terastal_expansion.init.TerastalItems
 import com.theendercore.terastal_expansion.init.TerastalTabs
@@ -35,43 +36,53 @@ object TerastalData : DataGeneratorEntrypoint {
     }
 
 
-    class TModels(o: FDOutput) : FabricModelProvider(o) {
-        override fun generateBlockStateModels(gen: BlockStateModelGenerator) {
-            TerastalBlocks.all().forEach(gen::registerSimpleCubeAll)
-        }
+}
 
-        override fun generateItemModels(gen: ItemModelGenerator) {
-            TerastalItems.all().filter { it !is BlockItem }.forEach(gen::registerPlain)
-        }
-    }
+class TModels(o: FDOutput) : FabricModelProvider(o) {
+    override fun generateBlockStateModels(gen: BlockStateModelGenerator) {
+//        TerastalBlocks.all().forEach(gen::registerSimpleCubeAll)
+        gen.registerSimpleCubeAll(TerastalBlocks.TERA_GEM_BLOCK)
+        var block: TumblestoneBlock? = TerastalBlocks.SMALL_BUDDING_TERA_SHARD as TumblestoneBlock?
+        while (true) {
+            gen.registerAmethyst(block)
+            gen.registerItemModel(block!!.asItem())
+            block = block.nextStage as TumblestoneBlock?
+            if (block == null) break
 
-    class EnLang(o: FDOutput) : FabricLanguageProvider(o) {
-        override fun generateTranslations(gen: TranslationBuilder) {
-            TerastalItems.register { id, item -> gen.add(item, genLang(id)) }
-            TerastalTabs.TERASTAL_TAB.let { gen.add(it, genLang(it.value)) }
-        }
-
-        private fun genLang(identifier: Identifier): String =
-            identifier.path.split("_").joinToString(" ") { it.replaceFirstChar(Char::uppercaseChar) }
-    }
-
-    class LootTables(o: FDOutput) : FabricBlockLootTableProvider(o) {
-        override fun generate() {
-            TerastalBlocks.all().forEach(::addDrop)
         }
     }
 
-    class TBlockTags(o: FDOutput, r: FutureLookup) : FabricTagProvider.BlockTagProvider(o, r) {
-        override fun configure(arg: RegistryWrapper.WrapperLookup) {
-            TerastalBlocks.all().forEach { block ->
-                getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(block)
-            }
-        }
+    override fun generateItemModels(gen: ItemModelGenerator) {
+        TerastalItems.all().filter { it !is BlockItem }.forEach(gen::registerPlain)
+    }
+}
+
+class EnLang(o: FDOutput) : FabricLanguageProvider(o) {
+    override fun generateTranslations(gen: TranslationBuilder) {
+        TerastalItems.register { id, item -> gen.add(item, genLang(id)) }
+        TerastalTabs.TERASTAL_TAB.let { gen.add(it, genLang(it.value)) }
     }
 
-    class TItemTags(o: FDOutput, r: FutureLookup, b: BlockTagProvider) : FabricTagProvider.ItemTagProvider(o, r, b) {
-        override fun configure(arg: RegistryWrapper.WrapperLookup?) {
+    private fun genLang(identifier: Identifier): String =
+        identifier.path.split("_").joinToString(" ") { it.replaceFirstChar(Char::uppercaseChar) }
+}
+
+class LootTables(o: FDOutput) : FabricBlockLootTableProvider(o) {
+    override fun generate() {
+        TerastalBlocks.all().forEach(::addDrop)
+    }
+}
+
+class TBlockTags(o: FDOutput, r: FutureLookup) : FabricTagProvider.BlockTagProvider(o, r) {
+    override fun configure(arg: RegistryWrapper.WrapperLookup) {
+        TerastalBlocks.all().forEach { block ->
+            getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(block)
         }
+    }
+}
+
+class TItemTags(o: FDOutput, r: FutureLookup, b: BlockTagProvider) : FabricTagProvider.ItemTagProvider(o, r, b) {
+    override fun configure(arg: RegistryWrapper.WrapperLookup?) {
     }
 }
 

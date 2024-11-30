@@ -41,6 +41,16 @@ val description: String by project
 
 subprojects {
     apply(plugin = "java")
+
+    val javaVersion = JavaLanguageVersion.of(17)
+
+    java.toolchain.languageVersion = javaVersion
+    kotlin {
+        jvmToolchain {
+            languageVersion.set(javaVersion)
+        }
+    }
+
     tasks.processResources {
         val expandProps = mapOf(
             "version" to version,

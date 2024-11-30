@@ -1,6 +1,7 @@
 package com.theendercore.terastal_expansion.init
 
 import com.cobblemon.mod.common.item.group.CobblemonItemGroups.ItemGroupHolder
+import com.theendercore.terastal_expansion.TerastalConst.MOD_ID
 import com.theendercore.terastal_expansion.TerastalConst.id
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemGroup.DisplayContext
@@ -12,10 +13,11 @@ import net.minecraft.registry.RegistryKey
 
 object TerastalTabs {
     val ALL = mutableListOf<ItemGroupHolder>()
-    val TERASTAL_TAB = create("terastal_tab", { ItemStack(TerastalItems.TERA_GEM_SHARD) }, ::modEntries)
+    val TERASTAL_TAB = create(MOD_ID, { ItemStack(TerastalItems.TERA_GEM_SHARD) }, ::modEntries)
 
     private fun modEntries(displayContext: DisplayContext, entries: Entries) {
-        entries.addAll(TerastalItems.all().map(::ItemStack))
+        val map = TerastalItems.all().map(::ItemStack).sortedBy { it.name.string }
+        entries.addAll(map)
     }
 
     private fun create(
