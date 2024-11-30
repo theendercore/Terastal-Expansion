@@ -8,6 +8,8 @@ architectury {
     forge()
 }
 
+val mod_id: String by project
+
 loom {
     enableTransitiveAccessWideners.set(true)
     silentMojangMappingsLicense()
@@ -46,5 +48,5 @@ dependencies {
     implementation("thedarkcolour:kotlinforforge:${forge_kotlin_version}")
 
     //    modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
-    modLocalRuntime ("dev.emi:emi-forge:${emi_version}")
+    modLocalRuntime("dev.emi:emi-forge:${emi_version}")
 }

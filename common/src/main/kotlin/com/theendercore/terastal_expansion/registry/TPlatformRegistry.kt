@@ -1,7 +1,7 @@
 package com.theendercore.terastal_expansion.registry
 
 import com.cobblemon.mod.common.platform.PlatformRegistry
-import com.theendercore.terastal_expansion.TeraConst.id
+import com.theendercore.terastal_expansion.TerastalConst.id
 import net.minecraft.registry.Registry
 import net.minecraft.registry.RegistryKey
 

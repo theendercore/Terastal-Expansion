@@ -1,5 +1,6 @@
 package com.theendercore.terastal_expansion.misc
 
-interface TeraImplementation {
+interface TerastalImplementation {
     fun registerItems()
+    fun registerBlocks()
 }
