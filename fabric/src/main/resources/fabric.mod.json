@@ -9,7 +9,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.cobblemon.fabric.example.FabricModExample"
+      {
+        "adapter": "kotlin",
+        "value": "com.theendercore.terastal_expansion.fabric.TerastalExpansionFabric"
+      }
     ]
   },
   "depends": {

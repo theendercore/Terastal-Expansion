@@ -20,13 +20,15 @@ loom {
 val minecraft_version: String by project
 val cobblemon_version: String by project
 val emi_version: String by project
+val yarn_version: String by project
 
 val fabric_loader_version: String by project
 val fabric_version: String by project
+val fabric_kotlin_version: String by project
 
 dependencies {
     minecraft("net.minecraft:minecraft:${minecraft_version}")
-    mappings(loom.officialMojangMappings())
+    mappings("net.fabricmc:yarn:${yarn_version}:v2")
     modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
 
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
@@ -34,6 +36,8 @@ dependencies {
 
     implementation(project(":common", configuration = "namedElements"))
     "developmentFabric"(project(":common", configuration = "namedElements"))
+
+    modImplementation("net.fabricmc:fabric-language-kotlin:${fabric_kotlin_version}")
 
     modImplementation("com.terraformersmc:modmenu:7.1.0")
 //    modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
