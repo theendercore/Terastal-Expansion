@@ -12,6 +12,7 @@ import net.minecraft.registry.Registry
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.RegistryKeys
 
+@Suppress("unused")
 object TerastalItems : TPlatformRegistry<Registry<Item>, RegistryKey<Registry<Item>>, Item>() {
     override val registry: Registry<Item> = Registries.ITEM
     override val registryKey: RegistryKey<Registry<Item>> = RegistryKeys.ITEM

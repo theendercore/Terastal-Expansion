@@ -5,7 +5,6 @@ import com.cobblemon.mod.common.block.GrowableStoneBlock.Companion.STAGE_1
 import com.cobblemon.mod.common.block.GrowableStoneBlock.Companion.STAGE_2
 import com.cobblemon.mod.common.block.GrowableStoneBlock.Companion.STAGE_3
 import com.cobblemon.mod.common.block.TumblestoneBlock
-import com.theendercore.terastal_expansion.init.TerastalItems.blockItem
 import com.theendercore.terastal_expansion.init.misc.TerastalBlockProperties.TERA_CLUSTER_PROPERTIES
 import com.theendercore.terastal_expansion.init.misc.TerastalBlockProperties.TERA_GEM_PROPERTIES
 import com.theendercore.terastal_expansion.registry.TPlatformRegistry
