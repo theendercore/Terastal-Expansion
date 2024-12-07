@@ -16,6 +16,12 @@
         "value": "com.theendercore.terastal_expansion.fabric.TerastalExpansionFabric"
       }
     ],
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "com.theendercore.terastal_expansion.fabric.client.TerastalExpansionFabricClient"
+      }
+    ],
     "fabric-datagen": [
       {
         "adapter": "kotlin",

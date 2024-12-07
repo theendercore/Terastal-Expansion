@@ -1,13 +1,16 @@
 package com.theendercore.terastal_expansion.forge
 
 import com.theendercore.terastal_expansion.TerastalExpansion.init
+import com.theendercore.terastal_expansion.forge.client.TerastalExpansionForgeClient
 import com.theendercore.terastal_expansion.init.TerastalBlocks
 import com.theendercore.terastal_expansion.init.TerastalItems
 import com.theendercore.terastal_expansion.init.TerastalTabs
 import com.theendercore.terastal_expansion.misc.TerastalImplementation
 import net.minecraft.item.ItemGroup
 import net.minecraft.registry.RegistryKeys
+import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.common.MinecraftForge
+import net.minecraftforge.fml.DistExecutor
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.registries.RegisterEvent
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
@@ -16,8 +19,9 @@ import thedarkcolour.kotlinforforge.forge.MOD_BUS
 class TerastalExpansionForge : TerastalImplementation {
     init {
         init(this)
+
         MinecraftForge.EVENT_BUS.register(this)
-//        CobblemonForge
+        DistExecutor.safeRunWhenOn(Dist.CLIENT) { DistExecutor.SafeRunnable(TerastalExpansionForgeClient::init) }
     }
 
     override fun registerItems() = MOD_BUS.addListener<RegisterEvent> {

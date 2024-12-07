@@ -45,8 +45,8 @@ class TModels(o: FDOutput) : FabricModelProvider(o) {
         var block: TumblestoneBlock? = TerastalBlocks.SMALL_BUDDING_TERA_SHARD as TumblestoneBlock?
         while (true) {
             gen.registerAmethyst(block)
-            gen.registerItemModel(block!!.asItem())
-            block = block.nextStage as TumblestoneBlock?
+            gen.registerItemModel(block)
+            block = block?.nextStage as TumblestoneBlock?
             if (block == null) break
 
         }
