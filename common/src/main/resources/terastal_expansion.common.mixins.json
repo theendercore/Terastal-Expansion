@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.theendercore.terastal_expansion.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+    "SummaryMixin"
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

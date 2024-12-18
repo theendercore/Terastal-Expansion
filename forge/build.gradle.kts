@@ -13,6 +13,9 @@ val mod_id: String by project
 loom {
     enableTransitiveAccessWideners.set(true)
     silentMojangMappingsLicense()
+    forge {
+        mixinConfig("terastal_expansion.common.mixins.json")
+    }
 }
 
 repositories {
