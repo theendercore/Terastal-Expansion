@@ -8,12 +8,10 @@ plugins {
 val minecraft_version: String by project
 val cobblemon_version: String by project
 val yarn_version: String by project
-val fabric_loader_version: String by project
+val mixin_version: String by project
 
 dependencies {
-    // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
-    // Do NOT use other classes from fabric loader
-    modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
+    compileOnly("net.fabricmc:sponge-mixin:${mixin_version}")
 
     minecraft("com.mojang:minecraft:$minecraft_version")
     mappings("net.fabricmc:yarn:${yarn_version}:v2")
