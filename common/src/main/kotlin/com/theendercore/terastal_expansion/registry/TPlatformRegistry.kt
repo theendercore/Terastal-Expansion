@@ -2,10 +2,10 @@ package com.theendercore.terastal_expansion.registry
 
 import com.cobblemon.mod.common.platform.PlatformRegistry
 import com.theendercore.terastal_expansion.TerastalConst.id
-import net.minecraft.registry.Registry
-import net.minecraft.registry.RegistryKey
+import net.minecraft.core.Registry
+import net.minecraft.resources.ResourceKey
 
-abstract class TPlatformRegistry<R : Registry<T>, K : RegistryKey<R>, T> : PlatformRegistry<R, K, T>() {
+abstract class TPlatformRegistry<R : Registry<T>, K : ResourceKey<R>, T> : PlatformRegistry<R, K, T>() {
     override fun <E : T> create(name: String, entry: E): E {
         val identifier = id(name)
         this.queue[identifier] = entry

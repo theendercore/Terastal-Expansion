@@ -3,32 +3,32 @@ package com.theendercore.terastal_expansion.init
 import com.cobblemon.mod.common.item.group.CobblemonItemGroups.ItemGroupHolder
 import com.theendercore.terastal_expansion.TerastalConst.MOD_ID
 import com.theendercore.terastal_expansion.TerastalConst.id
-import net.minecraft.item.ItemGroup
-import net.minecraft.item.ItemGroup.DisplayContext
-import net.minecraft.item.ItemGroup.Entries
-import net.minecraft.item.ItemGroup.EntryCollector
-import net.minecraft.item.ItemStack
-import net.minecraft.registry.Registries
-import net.minecraft.registry.RegistryKey
+import net.minecraft.core.registries.Registries
+import net.minecraft.resources.ResourceKey
+import net.minecraft.world.item.CreativeModeTab
+import net.minecraft.world.item.CreativeModeTab.DisplayItemsGenerator
+import net.minecraft.world.item.CreativeModeTab.ItemDisplayParameters
+import net.minecraft.world.item.CreativeModeTab.Output
+import net.minecraft.world.item.ItemStack
 
 object TerastalTabs {
     val ALL = mutableListOf<ItemGroupHolder>()
     val TERASTAL_TAB = create(MOD_ID, { ItemStack(TerastalItems.TERA_GEM_SHARD) }, ::modEntries)
 
-    private fun modEntries(displayContext: DisplayContext, entries: Entries) {
-        val map = TerastalItems.all().map(::ItemStack).sortedBy { it.name.string }
-        entries.addAll(map)
+    private fun modEntries(displayContext: ItemDisplayParameters, entries: Output) {
+        val map = TerastalItems.all().map(::ItemStack).sortedBy { it.displayName.string }
+        entries.acceptAll(map)
     }
 
     private fun create(
-        name: String, displayIconProvider: () -> ItemStack, entryCollector: EntryCollector,
-    ): RegistryKey<ItemGroup> {
-        val key = RegistryKey.of(Registries.ITEM_GROUP.key, id(name))
+        name: String, displayIconProvider: () -> ItemStack, entryCollector: DisplayItemsGenerator,
+    ): ResourceKey<CreativeModeTab> {
+        val key = ResourceKey.create(Registries.CREATIVE_MODE_TAB, id(name))
         this.ALL += ItemGroupHolder(key, displayIconProvider, entryCollector)
         return key
     }
 
-    fun register(consumer: (holder: ItemGroupHolder) -> ItemGroup) {
+    fun register(consumer: (holder: ItemGroupHolder) -> CreativeModeTab) {
         ALL.forEach(consumer::invoke)
     }
 

@@ -6,27 +6,28 @@ license = "${license}"
 modId = "${mod_id}"
 version = "${version}"
 displayName = "${mod_name}"
-logoFile = "${mod_id}.png"
+authors = "TheEnderCore"
 description = '''${description}'''
+logoFile = "${mod_id}.png"
 
 [[dependencies.${mod_id}]]
-modId = "minecraft"
-mandatory = true
-versionRange = "${minecraft_version_range}"
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.${mod_id}]]
-modId = "forge"
-mandatory = true
-versionRange = "${forge_version_range}"
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.${mod_id}]]
 modId = "kotlinforforge"
 mandatory = true
-versionRange = "[4.0.0,)"
+versionRange = "[5.0.0,)"
 ordering = "NONE"
 side = "BOTH"
 
@@ -36,3 +37,6 @@ mandatory = true
 versionRange = "[${cobblemon_version},)"
 ordering = "NONE"
 side = "BOTH"
+
+[[mixins]]
+config = "terastal_expansion.common.mixins.json"

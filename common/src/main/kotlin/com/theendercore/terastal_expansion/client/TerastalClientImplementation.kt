@@ -1,8 +1,9 @@
 package com.theendercore.terastal_expansion.client
 
-import net.minecraft.block.Block
-import net.minecraft.client.render.RenderLayer
+import net.minecraft.client.renderer.RenderType
+import net.minecraft.world.level.block.Block
+
 
 interface TerastalClientImplementation {
-    fun registerBlockRenderType(layer: RenderLayer, vararg blocks: Block)
+    fun registerBlockRenderType(layer: RenderType, vararg blocks: Block)
 }

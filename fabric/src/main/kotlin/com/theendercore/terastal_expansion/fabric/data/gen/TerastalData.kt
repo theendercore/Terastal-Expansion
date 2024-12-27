@@ -11,18 +11,18 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
-import net.minecraft.data.client.BlockStateModelGenerator
-import net.minecraft.data.client.ItemModelGenerator
-import net.minecraft.data.client.Models
-import net.minecraft.item.BlockItem
-import net.minecraft.item.Item
-import net.minecraft.registry.RegistryWrapper
-import net.minecraft.registry.tag.BlockTags
-import net.minecraft.util.Identifier
+import net.minecraft.core.HolderLookup
+import net.minecraft.data.models.BlockModelGenerators
+import net.minecraft.data.models.ItemModelGenerators
+import net.minecraft.data.models.model.ModelTemplates
+import net.minecraft.resources.ResourceLocation
+import net.minecraft.tags.BlockTags
+import net.minecraft.world.item.BlockItem
+import net.minecraft.world.item.Item
 import java.util.concurrent.CompletableFuture
 
 typealias FDOutput = FabricDataOutput
-typealias FutureLookup = CompletableFuture<RegistryWrapper.WrapperLookup>
+typealias FutureLookup = CompletableFuture<HolderLookup.Provider>
 
 object TerastalData : DataGeneratorEntrypoint {
     override fun onInitializeDataGenerator(gen: FabricDataGenerator) {
@@ -39,53 +39,51 @@ object TerastalData : DataGeneratorEntrypoint {
 }
 
 class TModels(o: FDOutput) : FabricModelProvider(o) {
-    override fun generateBlockStateModels(gen: BlockStateModelGenerator) {
+    override fun generateBlockStateModels(gen: BlockModelGenerators) {
 //        TerastalBlocks.all().forEach(gen::registerSimpleCubeAll)
-        gen.registerSimpleCubeAll(TerastalBlocks.TERA_GEM_BLOCK)
+        gen.createTrivialCube(TerastalBlocks.TERA_GEM_BLOCK)
         var block: TumblestoneBlock? = TerastalBlocks.SMALL_BUDDING_TERA_SHARD as TumblestoneBlock?
         while (true) {
-            gen.registerAmethyst(block)
-            gen.registerItemModel(block)
+            gen.createAmethystCluster(block)
+            gen.createSimpleFlatItemModel(block)
             block = block?.nextStage as TumblestoneBlock?
             if (block == null) break
 
         }
     }
 
-    override fun generateItemModels(gen: ItemModelGenerator) {
+    override fun generateItemModels(gen: ItemModelGenerators) {
         TerastalItems.all().filter { it !is BlockItem }.forEach(gen::registerPlain)
     }
 }
 
-class EnLang(o: FDOutput) : FabricLanguageProvider(o) {
-    override fun generateTranslations(gen: TranslationBuilder) {
+class EnLang(o: FDOutput, r: FutureLookup) : FabricLanguageProvider(o, r) {
+    override fun generateTranslations(registryLookup: HolderLookup.Provider, gen: TranslationBuilder) {
         TerastalItems.register { id, item -> gen.add(item, genLang(id)) }
-        TerastalTabs.TERASTAL_TAB.let { gen.add(it, genLang(it.value)) }
+        TerastalTabs.TERASTAL_TAB.let { gen.add(it, genLang(it.location())) }
     }
 
-    private fun genLang(identifier: Identifier): String =
+    private fun genLang(identifier: ResourceLocation): String =
         identifier.path.split("_").joinToString(" ") { it.replaceFirstChar(Char::uppercaseChar) }
 }
 
-class LootTables(o: FDOutput) : FabricBlockLootTableProvider(o) {
+class LootTables(o: FDOutput, r: FutureLookup) : FabricBlockLootTableProvider(o, r) {
     override fun generate() {
-        TerastalBlocks.all().forEach(::addDrop)
+        TerastalBlocks.all().forEach(::dropSelf)
     }
 }
 
 class TBlockTags(o: FDOutput, r: FutureLookup) : FabricTagProvider.BlockTagProvider(o, r) {
-    override fun configure(arg: RegistryWrapper.WrapperLookup) {
+    override fun addTags(arg: HolderLookup.Provider) {
         TerastalBlocks.all().forEach { block ->
-            getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(block)
+            getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE).add(block)
         }
     }
 }
 
 class TItemTags(o: FDOutput, r: FutureLookup, b: BlockTagProvider) : FabricTagProvider.ItemTagProvider(o, r, b) {
-    override fun configure(arg: RegistryWrapper.WrapperLookup?) {
+    override fun addTags(arg: HolderLookup.Provider) {
     }
 }
 
-fun ItemModelGenerator.registerPlain(item: Item) {
-    register(item, Models.GENERATED)
-}
+fun ItemModelGenerators.registerPlain(item: Item) = generateFlatItem(item, ModelTemplates.FLAT_ITEM)

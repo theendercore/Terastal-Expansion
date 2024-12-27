@@ -7,14 +7,17 @@ plugins {
 
 val minecraft_version: String by project
 val cobblemon_version: String by project
-val yarn_version: String by project
+val parchment_version: String by project
 val mixin_version: String by project
 
 dependencies {
     compileOnly("net.fabricmc:sponge-mixin:${mixin_version}")
 
     minecraft("com.mojang:minecraft:$minecraft_version")
-    mappings("net.fabricmc:yarn:${yarn_version}:v2")
+    mappings(loom.layered {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-1.21:${parchment_version}")
+    })
     modCompileOnly("com.cobblemon:mod:${cobblemon_version}") {
         isTransitive = false
     }

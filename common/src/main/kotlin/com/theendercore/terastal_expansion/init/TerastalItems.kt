@@ -4,21 +4,21 @@ import com.cobblemon.mod.common.item.CobblemonItem
 import com.cobblemon.mod.common.item.TumblestoneItem
 import com.theendercore.terastal_expansion.init.TerastalBlocks.SMALL_BUDDING_TERA_SHARD
 import com.theendercore.terastal_expansion.registry.TPlatformRegistry
-import net.minecraft.block.Block
-import net.minecraft.item.BlockItem
-import net.minecraft.item.Item
-import net.minecraft.registry.Registries
-import net.minecraft.registry.Registry
-import net.minecraft.registry.RegistryKey
-import net.minecraft.registry.RegistryKeys
+import net.minecraft.core.Registry
+import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.core.registries.Registries
+import net.minecraft.resources.ResourceKey
+import net.minecraft.world.item.BlockItem
+import net.minecraft.world.item.Item
+import net.minecraft.world.level.block.Block
 
 @Suppress("unused")
-object TerastalItems : TPlatformRegistry<Registry<Item>, RegistryKey<Registry<Item>>, Item>() {
-    override val registry: Registry<Item> = Registries.ITEM
-    override val registryKey: RegistryKey<Registry<Item>> = RegistryKeys.ITEM
+object TerastalItems : TPlatformRegistry<Registry<Item>, ResourceKey<Registry<Item>>, Item>() {
+    override val registry: Registry<Item> = BuiltInRegistries.ITEM
+    override val resourceKey: ResourceKey<Registry<Item>> = Registries.ITEM
 
     @JvmField
-    val TERA_GEM_SHARD = this.create("tera_shard", TumblestoneItem(Item.Settings(), SMALL_BUDDING_TERA_SHARD))
+    val TERA_GEM_SHARD = this.create("tera_shard", TumblestoneItem(Item.Properties(), SMALL_BUDDING_TERA_SHARD))
 
     @JvmField
     val TERA_GEM = item("tera_gem")
@@ -141,7 +141,7 @@ object TerastalItems : TPlatformRegistry<Registry<Item>, RegistryKey<Registry<It
         TerastalBlocks.register { id, block -> blockItem(id.path, block) }
     }
 
-    internal fun item(name: String): CobblemonItem = this.create(name, CobblemonItem(Item.Settings()))
+    internal fun item(name: String): CobblemonItem = this.create(name, CobblemonItem(Item.Properties()))
     internal fun blockItem(name: String, block: Block): BlockItem =
-        this.create(name, BlockItem(block, Item.Settings()))
+        this.create(name, BlockItem(block, Item.Properties()))
 }

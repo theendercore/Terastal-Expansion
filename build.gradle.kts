@@ -9,10 +9,10 @@ plugins {
     id("architectury-plugin") version ("3.4-SNAPSHOT") apply false
 }
 
-group = property("group")!!
-version = property("version")!!
-
 allprojects {
+    group = property("group")!!
+    version = property("version")!!
+
     apply(plugin = "java")
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
@@ -42,13 +42,16 @@ val description: String by project
 subprojects {
     apply(plugin = "java")
 
-    val javaVersion = JavaLanguageVersion.of(17)
+    val javaVersion = JavaLanguageVersion.of(21)
 
     java.toolchain.languageVersion = javaVersion
     kotlin {
         jvmToolchain {
             languageVersion.set(javaVersion)
         }
+    }
+    repositories{
+        maven("https://maven.parchmentmc.org")
     }
 
     tasks.processResources {
@@ -69,7 +72,7 @@ subprojects {
             "license" to license,
             "description" to project.description
         )
-        filesMatching(listOf("pack.mcmeta", "fabric.mod.json", "META-INF/mods.toml", "*.mixins.json")) {
+        filesMatching(listOf("pack.mcmeta", "fabric.mod.json", "META-INF/neoforge.mods.toml", "*.mixins.json")) {
             expand(expandProps)
         }
         inputs.properties(expandProps)

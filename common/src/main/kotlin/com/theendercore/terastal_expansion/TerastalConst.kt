@@ -1,6 +1,6 @@
 package com.theendercore.terastal_expansion
 
-import net.minecraft.util.Identifier
+import net.minecraft.resources.ResourceLocation
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -10,5 +10,5 @@ object TerastalConst {
 
     @JvmField
     val log: Logger = LoggerFactory.getLogger(MOD_NAME)
-    fun id(path: String) = Identifier(MOD_ID, path)
+    fun id(path: String) = ResourceLocation.fromNamespaceAndPath(MOD_ID, path)
 }

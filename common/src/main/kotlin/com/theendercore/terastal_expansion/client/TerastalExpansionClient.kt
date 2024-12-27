@@ -1,7 +1,7 @@
 package com.theendercore.terastal_expansion.client
 
 import com.theendercore.terastal_expansion.init.TerastalBlocks
-import net.minecraft.client.render.RenderLayer
+import net.minecraft.client.renderer.RenderType
 
 
 object TerastalExpansionClient {
@@ -14,7 +14,7 @@ object TerastalExpansionClient {
 
     private fun registerBlockRenderTypes() {
         implementation.registerBlockRenderType(
-            RenderLayer.getCutout(),
+            RenderType.cutout(),
             TerastalBlocks.TERA_SHARD_CLUSTER,
             TerastalBlocks.LARGE_BUDDING_TERA_SHARD,
             TerastalBlocks.MEDIUM_BUDDING_TERA_SHARD,

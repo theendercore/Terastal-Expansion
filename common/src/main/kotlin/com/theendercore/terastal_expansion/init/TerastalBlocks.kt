@@ -8,19 +8,19 @@ import com.cobblemon.mod.common.block.TumblestoneBlock
 import com.theendercore.terastal_expansion.init.misc.TerastalBlockProperties.TERA_CLUSTER_PROPERTIES
 import com.theendercore.terastal_expansion.init.misc.TerastalBlockProperties.TERA_GEM_PROPERTIES
 import com.theendercore.terastal_expansion.registry.TPlatformRegistry
-import net.minecraft.block.Block
-import net.minecraft.block.MapColor
-import net.minecraft.registry.Registries
-import net.minecraft.registry.Registry
-import net.minecraft.registry.RegistryKey
-import net.minecraft.registry.RegistryKeys
+import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.material.MapColor
+import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.core.Registry
+import net.minecraft.resources.ResourceKey
+import net.minecraft.core.registries.Registries
 
-object TerastalBlocks : TPlatformRegistry<Registry<Block>, RegistryKey<Registry<Block>>, Block>() {
-    override val registry: Registry<Block> = Registries.BLOCK
-    override val registryKey: RegistryKey<Registry<Block>> = RegistryKeys.BLOCK
+object TerastalBlocks : TPlatformRegistry<Registry<Block>, ResourceKey<Registry<Block>>, Block>() {
+    override val registry: Registry<Block> = BuiltInRegistries.BLOCK
+    override val resourceKey: ResourceKey<Registry<Block>> = Registries.BLOCK
 
     @JvmField
-    val TERA_GEM_BLOCK = block("tera_gem_block", Block(TERA_GEM_PROPERTIES.mapColor(MapColor.OFF_WHITE)))
+    val TERA_GEM_BLOCK = block("tera_gem_block", Block(TERA_GEM_PROPERTIES.mapColor(MapColor.QUARTZ)))
 
     @JvmField
     val TERA_SHARD_CLUSTER = clusterBlock("tera_shard_cluster", STAGE_3, 7, 3, null)
