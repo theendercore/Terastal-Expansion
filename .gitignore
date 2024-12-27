@@ -31,3 +31,4 @@ forge*changelog.txt
 
 # Project
 generated/
+.kotlin/
