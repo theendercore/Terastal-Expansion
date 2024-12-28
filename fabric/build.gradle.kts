@@ -18,6 +18,12 @@ loom {
     }
 
     runs {
+        create("ClientFixed") {
+            client()
+            ideConfigGenerated(true)
+            programArgs("--username", "Dev")
+        }
+
         create("DataGen") {
             client()
             ideConfigGenerated(true)

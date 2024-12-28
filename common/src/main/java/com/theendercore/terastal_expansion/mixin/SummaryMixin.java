@@ -28,9 +28,10 @@ public abstract class SummaryMixin extends Screen {
     void x(GuiGraphics ctx, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         var x = (width - Summary.BASE_WIDTH) / 2;
         var y = (height - Summary.BASE_HEIGHT) / 2;
+        var text = Component.literal("Tera : ");
         drawScaledText(
-                ctx, this.selectedPokemon.getTeraType().getDisplayName().getVisualOrderText(),
-                x + 60, y - 10,
+                ctx, text.append(this.selectedPokemon.getTeraType().getDisplayName()).getVisualOrderText(),
+                x + 39, y + 148,
                 1f, 1f, 1f, 0xffffff,
                 true, true
         );
