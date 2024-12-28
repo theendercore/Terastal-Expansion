@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.RenderType
 import net.minecraft.world.level.block.Block
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
-import net.neoforged.neoforge.common.NeoForge
 import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 
 object TerastalExpansionNeoClient : TerastalClientImplementation {
@@ -20,7 +19,6 @@ object TerastalExpansionNeoClient : TerastalClientImplementation {
         event.enqueueWork {
             TerastalExpansionClient.init(this)
         }
-//        NeoForge.EVENT_BUS.register(this)
     }
 
     @Suppress("DEPRECATION")
