@@ -8,4 +8,5 @@ object TerastalExpansion {
         tera.registerBlocks()
         tera.registerItems()
     }
+    fun events(){}
 }

@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.api.item.PokemonSelectingItem
 import com.cobblemon.mod.common.item.CobblemonItem
 import com.cobblemon.mod.common.pokemon.Pokemon
+import com.theendercore.terastal_expansion.client.net.TeraStateUpdatePacket
 import com.theendercore.terastal_expansion.misc.getTeraState
 import com.theendercore.terastal_expansion.misc.setTeraState
 import net.minecraft.server.level.ServerPlayer
@@ -20,7 +21,9 @@ class TeraOrbItem : CobblemonItem(Properties().stacksTo(1)), PokemonSelectingIte
     override fun applyToPokemon(player: ServerPlayer, stack: ItemStack, pokemon: Pokemon)
             : InteractionResultHolder<ItemStack> {
         pokemon.entity?.playSound(CobblemonSounds.FISHING_ROD_CAST, 1F, 1F)
-        pokemon.setTeraState(!pokemon.getTeraState())
+        val state = !pokemon.getTeraState()
+        pokemon.setTeraState(state)
+        pokemon.notify(TeraStateUpdatePacket({ pokemon }, state))
         return InteractionResultHolder.success(stack)
     }
 

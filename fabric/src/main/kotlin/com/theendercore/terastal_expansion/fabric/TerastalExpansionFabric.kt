@@ -17,6 +17,7 @@ object TerastalExpansionFabric : ModInitializer, TerastalImplementation {
         TerastalExpansion.init(this)
         networkManager.registerMessages()
 
+        TerastalExpansion.events()
     }
 
     override fun registerItems() {

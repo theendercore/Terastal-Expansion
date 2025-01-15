@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static com.cobblemon.mod.common.client.render.RenderHelperKt.drawScaledText;
+import static com.theendercore.terastal_expansion.misc.HelpersKt.getTeraState;
 
 @Mixin(value = Summary.class, remap = false)
 public abstract class SummaryMixin extends Screen {
@@ -29,9 +30,16 @@ public abstract class SummaryMixin extends Screen {
         var x = (width - Summary.BASE_WIDTH) / 2;
         var y = (height - Summary.BASE_HEIGHT) / 2;
         var text = Component.literal("Tera : ");
+        var text2 = Component.literal("Tera state : ");
         drawScaledText(
                 ctx, text.append(this.selectedPokemon.getTeraType().getDisplayName()).getVisualOrderText(),
                 x + 39, y + 148,
+                1f, 1f, 1f, 0xffffff,
+                true, true
+        );
+        drawScaledText(
+                ctx, text2.append("" + getTeraState(this.selectedPokemon)).getVisualOrderText(),
+                x + 39, y + 158,
                 1f, 1f, 1f, 0xffffff,
                 true, true
         );

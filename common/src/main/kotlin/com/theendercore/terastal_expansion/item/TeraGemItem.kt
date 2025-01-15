@@ -4,6 +4,7 @@ import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.api.item.PokemonSelectingItem
 import com.cobblemon.mod.common.api.types.tera.TeraType
 import com.cobblemon.mod.common.item.CobblemonItem
+import com.cobblemon.mod.common.net.messages.client.pokemon.update.TeraTypeUpdatePacket
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.sendParticlesServer
 import net.minecraft.core.particles.DustParticleOptions
@@ -30,6 +31,7 @@ class TeraGemItem(val type: TeraType) : CobblemonItem(Properties()), PokemonSele
         pokemon.entity?.playSound(CobblemonSounds.EVOLUTION_NOTIFICATION, 1F, 1F)
         if (!player.isCreative) stack.shrink(1)
         pokemon.teraType = type
+        pokemon.notify(TeraTypeUpdatePacket({ pokemon }, type))
         val text = Component.translatable("Your cobblemons tera type changes to %s", pokemon.teraType.displayName)
         player.sendSystemMessage(text, true)
         pokemon.entity?.let {
