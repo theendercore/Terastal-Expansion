@@ -7,7 +7,8 @@
     "BattleGUIMixin",
     "PokemonRendererMixin",
     "PosablePokemonEntityModelMixin",
-    "SummaryMixin"
+    "SummaryMixin",
+    "SingleActionRequestMixin"
   ],
   "mixins": [
     "PokemonMixin"
