@@ -2,6 +2,8 @@ package com.theendercore.terastal_expansion.misc
 
 import com.cobblemon.mod.common.api.types.tera.TeraType
 import com.cobblemon.mod.common.api.types.tera.TeraTypes
+import com.cobblemon.mod.common.battles.MoveActionResponse
+import com.cobblemon.mod.common.client.battle.SingleActionRequest
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.math.DoubleRange
@@ -131,7 +133,7 @@ fun renderPokemonDebugText(
         }
 
         val textList = jsonToText(filterJson(json)).reversed().toMutableList()
-        textList.add(makeText("TeraState: "+ pokemon.getTeraState()))
+        textList.add(makeText("TeraState: " + pokemon.getTeraState()))
         textList.add(makeText("Types: " + pokemon.types.joinToString(", ", "[ ", " ]") { it.name }))
         var len = 1
         for (component in textList) {
@@ -163,4 +165,14 @@ fun filterJson(json: JsonElement): JsonElement {
     val newJson = JsonObject()
     json.asJsonObject.asMap().forEach { (key, value) -> if (debugList.contains(key)) newJson.add(key, value) }
     return newJson
+}
+
+fun helpMeEscapeHell(request: SingleActionRequest, move: MoveActionResponse): String {
+    val moveIndex = (request.moveSet?.moves?.indexOfFirst { it.id == move.moveName } ?: -100) + 1
+
+    return if (move.targetPnx != null) {
+        "move $moveIndex [TARGET_POKEMON]"
+    } else {
+        "move $moveIndex"
+    }.plus(move.gimmickID?.let { " ${move.gimmickID}" } ?: "")
 }

@@ -4,10 +4,11 @@
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "client": [
+    "client.BattleGimmickButtonMixin",
     "client.PokemonRendererMixin",
     "client.PosablePokemonEntityModelMixin",
     "client.SummaryMixin",
-    "client.BattleGimmickButtonMixin"
+    "client.BattleGUIMixin"
   ],
   "mixins": [
     "PokemonMixin",
