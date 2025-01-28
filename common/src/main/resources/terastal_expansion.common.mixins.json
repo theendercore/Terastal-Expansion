@@ -7,11 +7,11 @@
     "BattleGUIMixin",
     "PokemonRendererMixin",
     "PosablePokemonEntityModelMixin",
-    "SummaryMixin",
-    "SingleActionRequestMixin"
+    "SummaryMixin"
   ],
   "mixins": [
-    "PokemonMixin"
+    "PokemonMixin",
+    "ShowdownActionRequestMixin"
   ],
   "injectors": {
     "defaultRequire": 1
