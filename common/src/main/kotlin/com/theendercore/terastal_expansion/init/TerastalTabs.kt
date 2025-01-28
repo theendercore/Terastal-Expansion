@@ -6,9 +6,7 @@ import com.theendercore.terastal_expansion.TerastalConst.id
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceKey
 import net.minecraft.world.item.CreativeModeTab
-import net.minecraft.world.item.CreativeModeTab.DisplayItemsGenerator
-import net.minecraft.world.item.CreativeModeTab.ItemDisplayParameters
-import net.minecraft.world.item.CreativeModeTab.Output
+import net.minecraft.world.item.CreativeModeTab.*
 import net.minecraft.world.item.ItemStack
 
 object TerastalTabs {

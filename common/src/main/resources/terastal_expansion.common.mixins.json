@@ -5,10 +5,10 @@
   "minVersion": "0.8",
   "client": [
     "client.BattleGimmickButtonMixin",
+    "client.BattleGUIMixin",
     "client.PokemonRendererMixin",
     "client.PosablePokemonEntityModelMixin",
-    "client.SummaryMixin",
-    "client.BattleGUIMixin"
+    "client.SummaryMixin"
   ],
   "mixins": [
     "PokemonMixin",

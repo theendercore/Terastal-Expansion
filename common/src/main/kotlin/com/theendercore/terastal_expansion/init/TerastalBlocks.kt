@@ -8,12 +8,12 @@ import com.cobblemon.mod.common.block.TumblestoneBlock
 import com.theendercore.terastal_expansion.init.misc.TerastalBlockProperties.TERA_CLUSTER_PROPERTIES
 import com.theendercore.terastal_expansion.init.misc.TerastalBlockProperties.TERA_GEM_PROPERTIES
 import com.theendercore.terastal_expansion.registry.TPlatformRegistry
+import net.minecraft.core.Registry
+import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.core.registries.Registries
+import net.minecraft.resources.ResourceKey
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.material.MapColor
-import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.core.Registry
-import net.minecraft.resources.ResourceKey
-import net.minecraft.core.registries.Registries
 
 object TerastalBlocks : TPlatformRegistry<Registry<Block>, ResourceKey<Registry<Block>>, Block>() {
     override val registry: Registry<Block> = BuiltInRegistries.BLOCK
