@@ -1,5 +1,6 @@
 package com.theendercore.terastal_expansion.neoforge
 
+import com.theendercore.terastal_expansion.TerastalExpansion
 import com.theendercore.terastal_expansion.TerastalExpansion.init
 import com.theendercore.terastal_expansion.init.TerastalBlocks
 import com.theendercore.terastal_expansion.init.TerastalItems
@@ -24,6 +25,7 @@ class TerastalExpansionNeo : TerastalImplementation {
             init(this@TerastalExpansionNeo)
             addListener(networkManager::registerMessages)
         }
+        TerastalExpansion.events()
         if (FMLEnvironment.dist == Dist.CLIENT) TerastalExpansionNeoClient.init()
     }
 
