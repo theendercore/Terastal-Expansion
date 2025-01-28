@@ -1,4 +1,4 @@
-package com.theendercore.terastal_expansion.mixin;
+package com.theendercore.terastal_expansion.mixin.client;
 
 import com.cobblemon.mod.common.client.gui.summary.Summary;
 import com.cobblemon.mod.common.pokemon.Pokemon;

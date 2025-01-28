@@ -4,9 +4,9 @@
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "client": [
-    "PokemonRendererMixin",
-    "PosablePokemonEntityModelMixin",
-    "SummaryMixin"
+    "client.PokemonRendererMixin",
+    "client.PosablePokemonEntityModelMixin",
+    "client.SummaryMixin"
   ],
   "mixins": [
     "PokemonMixin",
