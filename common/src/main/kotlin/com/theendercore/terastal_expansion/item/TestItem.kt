@@ -3,8 +3,8 @@ package com.theendercore.terastal_expansion.item
 import com.cobblemon.mod.common.api.item.PokemonSelectingItem
 import com.cobblemon.mod.common.item.CobblemonItem
 import com.cobblemon.mod.common.pokemon.Pokemon
-import com.theendercore.terastal_expansion.TerastalConst.log
 import com.theendercore.terastal_expansion.misc.getTeraState
+import com.theendercore.terastal_expansion.misc.makeText
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder
@@ -18,8 +18,8 @@ class TestItem : CobblemonItem(Properties()), PokemonSelectingItem {
 
     override fun applyToPokemon(player: ServerPlayer, stack: ItemStack, pokemon: Pokemon)
             : InteractionResultHolder<ItemStack> {
-        log.info("TeraType : {}", pokemon.teraType)
-        log.info("TeraState: {}", pokemon.getTeraState())
+        player.sendSystemMessage(makeText("TeraType : ").append(pokemon.teraType.displayName))
+        player.sendSystemMessage(makeText("TeraState: " + pokemon.getTeraState()))
 
         return InteractionResultHolder.success(stack)
     }
