@@ -37,11 +37,11 @@ public abstract class SummaryMixin extends Screen {
                 1f, 1f, 1f, 0xffffff,
                 true, true
         );
-//        drawScaledText(
-//                ctx, text2.append("" + getTeraState(this.selectedPokemon)).getVisualOrderText(),
-//                x + 39, y + 158,
-//                1f, 1f, 1f, 0xffffff,
-//                true, true
-//        );
+        drawScaledText(
+                ctx, text2.append("" + getTeraState(this.selectedPokemon)).getVisualOrderText(),
+                x + 39, y + 158,
+                1f, 1f, 1f, 0xffffff,
+                true, true
+        );
     }
 }
