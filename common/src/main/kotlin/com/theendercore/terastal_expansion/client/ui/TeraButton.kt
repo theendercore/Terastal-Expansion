@@ -11,6 +11,11 @@ class TerastalButton(moveSelection: BattleMoveSelection, x: Float, y: Float) :
 
     class TerastalTile(moveSelection: BattleMoveSelection, move: InBattleMove, x: Float, y: Float) :
         GimmickTile(ShowdownMoveset.Gimmick.TERASTALLIZATION, moveSelection, move, x, y) {
-        override val selectable: Boolean get() = gimmickMove?.disabled == false
+        init {
+            rgb = Triple(rgb.first + 0.25, rgb.second + 0.25, rgb.third + 0.25)
+        }
+
+        override val selectable: Boolean get() = gimmickMove == null || gimmickMove?.disabled == false
+
     }
 }
