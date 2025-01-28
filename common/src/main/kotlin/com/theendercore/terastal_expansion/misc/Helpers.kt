@@ -49,7 +49,6 @@ val colorMap = mapOf(
 
 
 fun TeraType.getTeraTypeColor(): Color = colorMap[this] ?: Color.BLUE
-fun print(any: Any?) = println(any)
 
 
 fun Pokemon.getTeraState(): Boolean = (this as TeraState).getTeraState()

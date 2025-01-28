@@ -7,7 +7,6 @@
     "client.BattleGimmickButtonMixin",
     "client.BattleGUIMixin",
     "client.PokemonRendererMixin",
-    "client.PosablePokemonEntityModelMixin",
     "client.SummaryMixin"
   ],
   "mixins": [

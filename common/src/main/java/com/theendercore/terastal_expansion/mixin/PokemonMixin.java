@@ -16,13 +16,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = Pokemon.class, remap = false)
 public abstract class PokemonMixin implements TeraState {
+
     @Shadow
-    <T> SimpleObservable<T> registerObservable(SimpleObservable<T> par2, Function1<T, PokemonUpdatePacket<?>> par3) {
+    public <T> SimpleObservable<T> registerObservable(SimpleObservable<T> par2, Function1<T, PokemonUpdatePacket<?>> par3) {
         return null;
     }
+
     @Unique
     @NotNull
     private boolean terastal_expansion$terraState = false;
+
     @Unique
     @NotNull
     private SimpleObservable<Boolean> _terastal_expansion$_terraState;
@@ -30,14 +33,18 @@ public abstract class PokemonMixin implements TeraState {
     void x(CallbackInfo ci) {
         _terastal_expansion$_terraState = registerObservable(new SimpleObservable<>(), this::terastal_expansion$terraState);
     }
+
     @Unique
     private PokemonUpdatePacket<?> terastal_expansion$terraState(boolean x) {
         return new TeraStateUpdatePacket(() -> (Pokemon) (Object) this, x);
     }
+
+    @Unique
     @Override
     public boolean getTeraState() {
         return terastal_expansion$terraState;
     }
+    @Unique
     @Override
     public void setTeraState(boolean state) {
         terastal_expansion$terraState = state;

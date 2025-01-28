@@ -24,6 +24,7 @@ public class BattleGUIMixin extends Screen {
     @Inject(method = "selectAction", at = @At(value = "INVOKE", target = "Lcom/cobblemon/mod/common/client/gui/battle/BattleGUI;changeActionSelection(Lcom/cobblemon/mod/common/client/gui/battle/subscreen/BattleActionSelection;)V"))
     void x(SingleActionRequest request, ShowdownActionResponse response, CallbackInfo ci) {
         if (response instanceof MoveActionResponse moves) {
+            if (minecraft == null) return;
             var player = minecraft.player;
             if (player == null) return;
             var text = helpMeEscapeHell(request, moves);
