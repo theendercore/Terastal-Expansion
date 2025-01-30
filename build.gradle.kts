@@ -1,29 +1,19 @@
 @file:Suppress("PropertyName")
 
+import net.fabricmc.loom.api.LoomGradleExtensionAPI
+
+
 plugins {
     id("java")
-    id("java-library")
     kotlin("jvm") version ("2.0.0")
 
+    id("architectury-plugin") version ("3.4-SNAPSHOT")
     id("dev.architectury.loom") version ("1.7-SNAPSHOT") apply false
-    id("architectury-plugin") version ("3.4-SNAPSHOT") apply false
+    id("com.github.johnrengelman.shadow") version ("8.1.1") apply false
 }
 
-allprojects {
-    group = property("group")!!
-    version = property("version")!!
-
-    apply(plugin = "java")
-    apply(plugin = "org.jetbrains.kotlin.jvm")
-
-    repositories {
-        mavenCentral()
-        maven(url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
-        maven("https://maven.impactdev.net/repository/development/")
-        maven("https://maven.terraformersmc.com/")
-
-    }
-}
+val archive_name: String by project
+val parchment_version: String by project
 
 val minecraft_version: String by project
 val cobblemon_version: String by project
@@ -39,20 +29,54 @@ val mod_id: String by project
 val license: String by project
 val description: String by project
 
-subprojects {
+architectury.minecraft = minecraft_version
+
+allprojects {
     apply(plugin = "java")
+    apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "architectury-plugin")
+
+    group = property("group")!!
+    version = property("version")!!
 
     val javaVersion = JavaLanguageVersion.of(21)
 
     java.toolchain.languageVersion = javaVersion
-    kotlin {
-        jvmToolchain {
-            languageVersion.set(javaVersion)
-        }
+    kotlin.jvmToolchain { languageVersion.set(javaVersion) }
+
+    repositories {
+        mavenCentral()
+        maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
+        maven("https://maven.impactdev.net/repository/development/")
+        maven("https://maven.terraformersmc.com/")
+        maven("https://maven.parchmentmc.org")
+        maven("https://maven.neoforged.net/releases")
+        maven("https://thedarkcolour.github.io/KotlinForForge/")
+
+//        maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
+//        maven("https://hub.spigotmc.org/nexus/content/groups/public/")
     }
-    repositories{
+}
+
+subprojects {
+    apply(plugin = "dev.architectury.loom")
+    repositories {
         maven("https://maven.parchmentmc.org")
     }
+
+    val loom = project.extensions.getByName<LoomGradleExtensionAPI>("loom")
+    loom.silentMojangMappingsLicense()
+
+    @Suppress("UnstableApiUsage")
+    dependencies {
+        "minecraft"("com.mojang:minecraft:$minecraft_version")
+        "mappings"(loom.layered {
+            officialMojangMappings()
+            parchment("org.parchmentmc.data:parchment-1.21.1:$parchment_version@zip")
+        })
+    }
+
+    base.archivesName = "$archive_name-${project.name}"
 
     tasks.processResources {
         val expandProps = mapOf(
