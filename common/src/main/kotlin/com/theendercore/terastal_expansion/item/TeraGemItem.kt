@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.item.CobblemonItem
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.TeraTypeUpdatePacket
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.sendParticlesServer
+import com.theendercore.terastal_expansion.misc.text
 import net.minecraft.core.particles.DustParticleOptions
 import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerLevel
@@ -32,7 +33,7 @@ class TeraGemItem(val type: TeraType) : CobblemonItem(Properties()), PokemonSele
         if (!player.isCreative) stack.shrink(1)
         pokemon.teraType = type
         pokemon.notify(TeraTypeUpdatePacket({ pokemon }, type))
-        val text = Component.translatable("Your cobblemons tera type changes to %s", pokemon.teraType.displayName)
+        val text = text("Your Pokemon's Tera Type has changed to %s!", pokemon.teraType.displayName)
         player.sendSystemMessage(text, true)
         pokemon.entity?.let {
             if (player.level() is ServerLevel) player.level().sendParticlesServer(

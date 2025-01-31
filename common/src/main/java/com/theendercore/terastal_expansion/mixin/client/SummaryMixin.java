@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static com.cobblemon.mod.common.client.render.RenderHelperKt.drawScaledText;
-import static com.theendercore.terastal_expansion.misc.HelpersKt.getTeraState;
+import static com.theendercore.terastal_expansion.misc.MixinKt.getTeraState;
 
 @Mixin(value = Summary.class, remap = false)
 public abstract class SummaryMixin extends Screen {

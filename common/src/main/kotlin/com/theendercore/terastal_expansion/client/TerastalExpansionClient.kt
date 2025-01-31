@@ -12,13 +12,12 @@ object TerastalExpansionClient {
         registerBlockRenderTypes()
     }
 
-    private fun registerBlockRenderTypes() {
-        implementation.registerBlockRenderType(
-            RenderType.cutout(),
-            TerastalBlocks.TERA_SHARD_CLUSTER,
-            TerastalBlocks.LARGE_BUDDING_TERA_SHARD,
-            TerastalBlocks.MEDIUM_BUDDING_TERA_SHARD,
-            TerastalBlocks.SMALL_BUDDING_TERA_SHARD,
-        )
-    }
+    private fun registerBlockRenderTypes() = implementation.registerBlockRenderType(
+        RenderType.cutout(),
+        TerastalBlocks.TERA_SHARD_CLUSTER,
+        TerastalBlocks.LARGE_BUDDING_TERA_SHARD,
+        TerastalBlocks.MEDIUM_BUDDING_TERA_SHARD,
+        TerastalBlocks.SMALL_BUDDING_TERA_SHARD,
+    )
+
 }

@@ -16,6 +16,5 @@ class TerastalButton(moveSelection: BattleMoveSelection, x: Float, y: Float) :
         }
 
         override val selectable: Boolean get() = gimmickMove == null || gimmickMove?.disabled == false
-
     }
 }

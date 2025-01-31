@@ -47,13 +47,7 @@ val colorMap = mapOf(
     TeraTypes.STELLAR to Color.BLUE
 )
 
-
 fun TeraType.getTeraTypeColor(): Color = colorMap[this] ?: Color.BLUE
-
-
-fun Pokemon.getTeraState(): Boolean = (this as TeraState).getTeraState()
-fun Pokemon.setTeraState(state: Boolean) = (this as TeraState).setTeraState(state)
-
 
 fun jsonToText(json: JsonElement, nesting: Int = 0): List<Component> = buildList {
     when (json) {
@@ -165,6 +159,7 @@ fun filterJson(json: JsonElement): JsonElement {
     json.asJsonObject.asMap().forEach { (key, value) -> if (debugList.contains(key)) newJson.add(key, value) }
     return newJson
 }
+
 
 fun helpMeEscapeHell(request: SingleActionRequest, move: MoveActionResponse): String {
     val moveIndex = (request.moveSet?.moves?.indexOfFirst { it.id == move.moveName } ?: -100) + 1
