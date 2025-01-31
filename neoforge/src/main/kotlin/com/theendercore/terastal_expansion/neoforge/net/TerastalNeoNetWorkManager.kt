@@ -1,6 +1,5 @@
 package com.theendercore.terastal_expansion.neoforge.net
 
-import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.NetworkManager
 import com.cobblemon.mod.common.api.net.NetworkPacket
 import com.cobblemon.mod.common.client.net.data.DataRegistrySyncPacketHandler
@@ -22,7 +21,7 @@ object TerastalNeoNetWorkManager : NetworkManager {
             .versioned(PROTOCOL_VERSION)
 
         val netRegistrar = event
-            .registrar(Cobblemon.MODID)
+            .registrar(TerastalConst.MOD_ID)
             .versioned(PROTOCOL_VERSION)
             .executesOn(HandlerThread.NETWORK)
 
