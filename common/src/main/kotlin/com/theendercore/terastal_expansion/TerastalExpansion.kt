@@ -16,7 +16,13 @@ object TerastalExpansion {
     }
 
     fun events() {
-        TERASTALLIZATION.subscribe { it.pokemon.originalPokemon.setTerastallizedType(it.teraType) }
+        TERASTALLIZATION.subscribe {
+            it.pokemon.originalPokemon.setTerastallizedType(it.teraType)
+//            val x = if (isDedicatedServer) server() else Minecraft.getInstance().singleplayerServer
+           /* x?.playerList?.players?.forEach { server ->
+                server.sendPacket(TeraUpdatePacket({ it.pokemon.originalPokemon }, it.teraType))
+            }*/
+        }
         BATTLE_FLED.subscribe { event -> event.player.pokemonList.forEach { it.originalPokemon.clearTerastallizedType() } }
         BATTLE_FAINTED.subscribe { it.killed.originalPokemon.clearTerastallizedType() }
         BATTLE_VICTORY.subscribe { event ->

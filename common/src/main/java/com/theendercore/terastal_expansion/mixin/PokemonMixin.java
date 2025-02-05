@@ -25,14 +25,14 @@ public abstract class PokemonMixin implements HasTerastallizedType {
     }
 
     @Unique
-    private TeraType terastal_expansion$terraState = null;
+    private TeraType terastal_expansion$terastallizedType = null;
 
     @Unique
     @NotNull
-    private SimpleObservable<TeraType> _terastal_expansion$_terraState;
+    private SimpleObservable<TeraType> _terastal_expansion$_terastallizedType;
     @Inject(method = "<init>", at = @At("TAIL"))
     void x(CallbackInfo ci) {
-        _terastal_expansion$_terraState = registerObservable(new SimpleObservable<>(), this::terastal_expansion$terraState);
+        _terastal_expansion$_terastallizedType = registerObservable(new SimpleObservable<>(), this::terastal_expansion$terraState);
     }
 
     @Unique
@@ -42,12 +42,12 @@ public abstract class PokemonMixin implements HasTerastallizedType {
 
     @Override
     public @Nullable TeraType terastal$getTerastallizedType() {
-        return terastal_expansion$terraState;
+        return terastal_expansion$terastallizedType;
     }
 
     @Override
     public void terastal$setTerastallizedType(@Nullable TeraType state) {
-        terastal_expansion$terraState = state;
-        _terastal_expansion$_terraState.emit(state);
+        terastal_expansion$terastallizedType = state;
+        _terastal_expansion$_terastallizedType.emit(state);
     }
 }

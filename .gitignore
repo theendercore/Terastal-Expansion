@@ -32,3 +32,4 @@ forge*changelog.txt
 # Project
 generated/
 .kotlin/
+test.json

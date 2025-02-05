@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.item.TumblestoneItem
 import com.theendercore.terastal_expansion.init.TerastalBlocks.SMALL_BUDDING_TERA_SHARD
 import com.theendercore.terastal_expansion.item.TeraGemItem
 import com.theendercore.terastal_expansion.item.TeraOrbItem
+import com.theendercore.terastal_expansion.item.Test2Item
 import com.theendercore.terastal_expansion.item.TestItem
 import com.theendercore.terastal_expansion.registry.TPlatformRegistry
 import net.minecraft.core.Registry
@@ -147,6 +148,7 @@ object TerastalItems : TPlatformRegistry<Registry<Item>, ResourceKey<Registry<It
 
     @JvmField
     val TEST_ITEM = create("test_item", TestItem())
+    val TEST_2_ITEM = create("test_2_item", Test2Item())
 
     init {
         TerastalBlocks.register { id, block -> blockItem(id.path, block) }
