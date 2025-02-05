@@ -4,7 +4,7 @@ import com.cobblemon.mod.common.api.reactive.SimpleObservable;
 import com.cobblemon.mod.common.api.types.tera.TeraType;
 import com.cobblemon.mod.common.net.messages.client.PokemonUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.theendercore.terastal_expansion.client.net.TeraStateUpdatePacket;
+import com.theendercore.terastal_expansion.client.net.HasTerastallizedStateUpdatePacket;
 import com.theendercore.terastal_expansion.misc.HasTerastallizedState;
 import kotlin.jvm.functions.Function1;
 import org.jetbrains.annotations.NotNull;
@@ -37,7 +37,7 @@ public abstract class PokemonMixin implements HasTerastallizedState {
 
     @Unique
     private PokemonUpdatePacket<?> terastal_expansion$terraState(TeraType x) {
-        return new TeraStateUpdatePacket(() -> (Pokemon) (Object) this, x);
+        return new HasTerastallizedStateUpdatePacket(() -> (Pokemon) (Object) this, x);
     }
 
     @Override

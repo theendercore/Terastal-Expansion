@@ -11,19 +11,19 @@ import com.theendercore.terastal_expansion.misc.setTerastallizedType
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 
-class TeraStateUpdatePacket(pokemon: () -> Pokemon, value: TeraType) :
-    SingleUpdatePacket<TeraType, TeraStateUpdatePacket>(pokemon, value) {
+class HasTerastallizedStateUpdatePacket(pokemon: () -> Pokemon, value: TeraType?) :
+    SingleUpdatePacket<TeraType?, HasTerastallizedStateUpdatePacket>(pokemon, value) {
     override val id: ResourceLocation = ID
 
     override fun encodeValue(buffer: RegistryFriendlyByteBuf) {
-        buffer.writeIdentifier(value.id)
+        buffer.writeNullable(value?.id) { _, id -> buffer.writeIdentifier(id) }
     }
 
-    override fun set(pokemon: Pokemon, value: TeraType) = pokemon.setTerastallizedType(value)
+    override fun set(pokemon: Pokemon, value: TeraType?) = pokemon.setTerastallizedType(value)
 
     companion object {
         val ID = id("tera_state_update")
         fun decode(buffer: RegistryFriendlyByteBuf) =
-            TeraStateUpdatePacket(decodePokemon(buffer), TeraTypes.get(buffer.readIdentifier())!!)
+            HasTerastallizedStateUpdatePacket(decodePokemon(buffer), buffer.readNullable { TeraTypes.get(buffer.readIdentifier())!! })
     }
 }

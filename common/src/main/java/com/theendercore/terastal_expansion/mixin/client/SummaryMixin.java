@@ -31,6 +31,9 @@ public abstract class SummaryMixin extends Screen {
         var y = (height - Summary.BASE_HEIGHT) / 2;
         var text = Component.literal("Tera : ");
         var text2 = Component.literal("Tera state : ");
+        var state = getTerastallizedType(this.selectedPokemon);
+        if (state != null) text2.append(state.getDisplayName());
+        else text2.append("None");
         drawScaledText(
                 ctx, text.append(this.selectedPokemon.getTeraType().getDisplayName()).getVisualOrderText(),
                 x + 39, y + 148,
@@ -38,7 +41,7 @@ public abstract class SummaryMixin extends Screen {
                 true, true
         );
         drawScaledText(
-                ctx, text2.append("" + getTerastallizedType(this.selectedPokemon)).getVisualOrderText(),
+                ctx, text2.getVisualOrderText(),
                 x + 39, y + 158,
                 1f, 1f, 1f, 0xffffff,
                 true, true
