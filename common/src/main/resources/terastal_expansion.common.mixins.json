@@ -5,14 +5,16 @@
   "minVersion": "0.8",
   "client": [
     "client.BattleGimmickButtonMixin",
-    "client.BattleGUIMixin",
+    "client.BattleMoveSelectionMixin",
     "client.PokemonRendererMixin",
-    "client.SummaryMixin",
-    "client.BattleMoveSelectionMixin"
+    "client.SummaryMixin"
   ],
   "mixins": [
+    "GraalShowdownServiceMixin",
+    "PokemonBattleMixin",
     "PokemonMixin",
-    "ShowdownActionRequestMixin"
+    "ShowdownActionRequestMixin",
+    "ShowdownInterpreterMixin"
   ],
   "injectors": {
     "defaultRequire": 1
