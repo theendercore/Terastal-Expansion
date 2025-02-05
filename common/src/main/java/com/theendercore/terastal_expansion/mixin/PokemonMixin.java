@@ -1,12 +1,14 @@
 package com.theendercore.terastal_expansion.mixin;
 
 import com.cobblemon.mod.common.api.reactive.SimpleObservable;
+import com.cobblemon.mod.common.api.types.tera.TeraType;
 import com.cobblemon.mod.common.net.messages.client.PokemonUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.theendercore.terastal_expansion.client.net.TeraStateUpdatePacket;
-import com.theendercore.terastal_expansion.misc.TeraState;
+import com.theendercore.terastal_expansion.misc.HasTerastallizedState;
 import kotlin.jvm.functions.Function1;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -15,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = Pokemon.class, remap = false)
-public abstract class PokemonMixin implements TeraState {
+public abstract class PokemonMixin implements HasTerastallizedState {
 
     @Shadow
     public <T> SimpleObservable<T> registerObservable(SimpleObservable<T> par2, Function1<T, PokemonUpdatePacket<?>> par3) {
@@ -23,30 +25,28 @@ public abstract class PokemonMixin implements TeraState {
     }
 
     @Unique
-    @NotNull
-    private boolean terastal_expansion$terraState = false;
+    private TeraType terastal_expansion$terraState = null;
 
     @Unique
     @NotNull
-    private SimpleObservable<Boolean> _terastal_expansion$_terraState;
+    private SimpleObservable<TeraType> _terastal_expansion$_terraState;
     @Inject(method = "<init>", at = @At("TAIL"))
     void x(CallbackInfo ci) {
         _terastal_expansion$_terraState = registerObservable(new SimpleObservable<>(), this::terastal_expansion$terraState);
     }
 
     @Unique
-    private PokemonUpdatePacket<?> terastal_expansion$terraState(boolean x) {
+    private PokemonUpdatePacket<?> terastal_expansion$terraState(TeraType x) {
         return new TeraStateUpdatePacket(() -> (Pokemon) (Object) this, x);
     }
 
-    @Unique
     @Override
-    public boolean getTeraState() {
+    public @Nullable TeraType terastal$getTerastallizedType() {
         return terastal_expansion$terraState;
     }
-    @Unique
+
     @Override
-    public void setTeraState(boolean state) {
+    public void terastal$setTerastallizedType(@Nullable TeraType state) {
         terastal_expansion$terraState = state;
         _terastal_expansion$_terraState.emit(state);
     }

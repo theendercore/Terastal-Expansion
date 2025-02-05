@@ -1,10 +1,12 @@
 package com.theendercore.terastal_expansion
 
-import com.cobblemon.mod.common.api.events.CobblemonEvents.POKEMON_SENT_PRE
-import com.theendercore.terastal_expansion.TerastalConst.log
+import com.cobblemon.mod.common.api.events.CobblemonEvents.BATTLE_FAINTED
+import com.cobblemon.mod.common.api.events.CobblemonEvents.BATTLE_FLED
+import com.cobblemon.mod.common.api.events.CobblemonEvents.BATTLE_VICTORY
+import com.cobblemon.mod.common.api.events.CobblemonEvents.TERASTALLIZATION
 import com.theendercore.terastal_expansion.misc.TerastalImplementation
-import com.theendercore.terastal_expansion.misc.getTeraState
-import com.theendercore.terastal_expansion.misc.setTeraState
+import com.theendercore.terastal_expansion.misc.clearTerastallizedType
+import com.theendercore.terastal_expansion.misc.setTerastallizedType
 
 object TerastalExpansion {
     @JvmStatic
@@ -14,10 +16,12 @@ object TerastalExpansion {
     }
 
     fun events() {
-        POKEMON_SENT_PRE.subscribe {
-            if (!it.pokemon.getTeraState()) it.pokemon.setTeraState(true)
-            else log.info("Pokemon is already In The Tera State")
+        TERASTALLIZATION.subscribe { it.pokemon.originalPokemon.setTerastallizedType(it.teraType) }
+        BATTLE_FLED.subscribe { event -> event.player.pokemonList.forEach { it.originalPokemon.clearTerastallizedType() } }
+        BATTLE_FAINTED.subscribe { it.killed.originalPokemon.clearTerastallizedType() }
+        BATTLE_VICTORY.subscribe { event ->
+            event.losers.forEach { actor -> actor.pokemonList.forEach { it.originalPokemon.clearTerastallizedType() } }
+            event.winners.forEach { actor -> actor.pokemonList.forEach { it.originalPokemon.clearTerastallizedType() } }
         }
-//        POKEMON_SENT_POST.subscribe { }
     }
 }

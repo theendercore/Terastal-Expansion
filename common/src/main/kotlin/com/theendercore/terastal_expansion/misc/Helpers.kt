@@ -2,8 +2,6 @@ package com.theendercore.terastal_expansion.misc
 
 import com.cobblemon.mod.common.api.types.tera.TeraType
 import com.cobblemon.mod.common.api.types.tera.TeraTypes
-import com.cobblemon.mod.common.battles.MoveActionResponse
-import com.cobblemon.mod.common.client.battle.SingleActionRequest
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.math.DoubleRange
@@ -126,7 +124,7 @@ fun renderPokemonDebugText(
         }
 
         val textList = jsonToText(filterJson(json)).reversed().toMutableList()
-        textList.add(makeText("TeraState: " + entity.pokemon.getTeraState()))
+        textList.add(makeText("TeraState: " + entity.pokemon.getTerastallizedType()))
         textList.add(makeText("Types: " + pokemon.types.joinToString(", ", "[ ", " ]") { it.name }))
         var len = 1
         for (component in textList) {
