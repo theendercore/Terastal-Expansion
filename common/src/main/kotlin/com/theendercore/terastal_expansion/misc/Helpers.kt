@@ -159,14 +159,3 @@ fun filterJson(json: JsonElement): JsonElement {
     json.asJsonObject.asMap().forEach { (key, value) -> if (debugList.contains(key)) newJson.add(key, value) }
     return newJson
 }
-
-
-fun helpMeEscapeHell(request: SingleActionRequest, move: MoveActionResponse): String {
-    val moveIndex = (request.moveSet?.moves?.indexOfFirst { it.id == move.moveName } ?: -100) + 1
-
-    return if (move.targetPnx != null) {
-        "move $moveIndex [TARGET_POKEMON]"
-    } else {
-        "move $moveIndex"
-    }.plus(move.gimmickID?.let { " ${move.gimmickID}" } ?: "")
-}
