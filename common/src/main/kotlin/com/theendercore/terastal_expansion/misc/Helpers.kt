@@ -124,7 +124,7 @@ fun renderPokemonDebugText(
         }
 
         val textList = jsonToText(filterJson(json)).reversed().toMutableList()
-        textList.add(makeText("TeraState: " + entity.pokemon.getTerastallizedType()))
+        textList.add(makeText("Terastallized Type: " + entity.pokemon.getTerastallizedType()))
         textList.add(makeText("Types: " + pokemon.types.joinToString(", ", "[ ", " ]") { it.name }))
         var len = 1
         for (component in textList) {

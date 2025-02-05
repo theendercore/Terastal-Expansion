@@ -4,8 +4,8 @@ import com.cobblemon.mod.common.api.types.tera.TeraType
 import com.cobblemon.mod.common.pokemon.Pokemon
 
 
-fun Pokemon.getTerastallizedType(): TeraType? = (this as HasTerastallizedState).`terastal$getTerastallizedType`()
+fun Pokemon.getTerastallizedType(): TeraType? = (this as HasTerastallizedType).`terastal$getTerastallizedType`()
 fun Pokemon.setTerastallizedType(state: TeraType?) =
-    (this as HasTerastallizedState).`terastal$setTerastallizedType`(state)
+    (this as HasTerastallizedType).`terastal$setTerastallizedType`(state)
 fun Pokemon.clearTerastallizedType() = this.setTerastallizedType(null)
 

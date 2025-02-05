@@ -5,7 +5,7 @@ import com.cobblemon.mod.common.api.types.tera.TeraType;
 import com.cobblemon.mod.common.net.messages.client.PokemonUpdatePacket;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.theendercore.terastal_expansion.client.net.HasTerastallizedStateUpdatePacket;
-import com.theendercore.terastal_expansion.misc.HasTerastallizedState;
+import com.theendercore.terastal_expansion.misc.HasTerastallizedType;
 import kotlin.jvm.functions.Function1;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = Pokemon.class, remap = false)
-public abstract class PokemonMixin implements HasTerastallizedState {
+public abstract class PokemonMixin implements HasTerastallizedType {
 
     @Shadow
     public <T> SimpleObservable<T> registerObservable(SimpleObservable<T> par2, Function1<T, PokemonUpdatePacket<?>> par3) {
