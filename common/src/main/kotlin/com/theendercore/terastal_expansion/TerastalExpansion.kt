@@ -3,9 +3,11 @@ package com.theendercore.terastal_expansion
 import com.cobblemon.mod.common.api.events.CobblemonEvents.BATTLE_FAINTED
 import com.cobblemon.mod.common.api.events.CobblemonEvents.BATTLE_FLED
 import com.cobblemon.mod.common.api.events.CobblemonEvents.BATTLE_VICTORY
+import com.cobblemon.mod.common.api.events.CobblemonEvents.POKEMON_SENT_POST
 import com.cobblemon.mod.common.api.events.CobblemonEvents.TERASTALLIZATION
 import com.theendercore.terastal_expansion.misc.TerastalImplementation
 import com.theendercore.terastal_expansion.misc.clearTerastallizedType
+import com.theendercore.terastal_expansion.misc.getTerastallizedType
 import com.theendercore.terastal_expansion.misc.setTerastallizedType
 
 object TerastalExpansion {
@@ -16,18 +18,17 @@ object TerastalExpansion {
     }
 
     fun events() {
-        TERASTALLIZATION.subscribe {
-            it.pokemon.originalPokemon.setTerastallizedType(it.teraType)
-//            val x = if (isDedicatedServer) server() else Minecraft.getInstance().singleplayerServer
-           /* x?.playerList?.players?.forEach { server ->
-                server.sendPacket(TeraUpdatePacket({ it.pokemon.originalPokemon }, it.teraType))
-            }*/
+        POKEMON_SENT_POST.subscribe {
+            it.pokemonEntity.pokemon.teraType = it.pokemon.teraType
+            it.pokemonEntity.pokemon.setTerastallizedType(it.pokemon.getTerastallizedType())
         }
+
+        TERASTALLIZATION.subscribe { it.pokemon.originalPokemon.setTerastallizedType(it.teraType) }
         BATTLE_FLED.subscribe { event -> event.player.pokemonList.forEach { it.originalPokemon.clearTerastallizedType() } }
         BATTLE_FAINTED.subscribe { it.killed.originalPokemon.clearTerastallizedType() }
         BATTLE_VICTORY.subscribe { event ->
-            event.losers.forEach { actor -> actor.pokemonList.forEach { it.originalPokemon.clearTerastallizedType() } }
-            event.winners.forEach { actor -> actor.pokemonList.forEach { it.originalPokemon.clearTerastallizedType() } }
+            event.losers.forEach { act -> act.pokemonList.forEach { it.originalPokemon.clearTerastallizedType() } }
+            event.winners.forEach { act -> act.pokemonList.forEach { it.originalPokemon.clearTerastallizedType() } }
         }
     }
 }

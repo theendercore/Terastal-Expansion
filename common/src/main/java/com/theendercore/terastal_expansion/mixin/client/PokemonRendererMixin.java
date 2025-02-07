@@ -12,7 +12,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import static com.theendercore.terastal_expansion.client.RenderingKt.renderTeraType;
 import static com.theendercore.terastal_expansion.misc.HelpersKt.renderPokemonDebugText;
+import static com.theendercore.terastal_expansion.misc.MixinKt.getTerastallizedType;
 
 @Mixin(value = PokemonRenderer.class, remap = false)
 public abstract class PokemonRendererMixin<T extends Entity> extends EntityRenderer<T> {
@@ -22,7 +24,10 @@ public abstract class PokemonRendererMixin<T extends Entity> extends EntityRende
 
     @Inject(method = "render(Lcom/cobblemon/mod/common/entity/pokemon/PokemonEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At("TAIL"))
     void debugText(PokemonEntity entity, float entityYaw, float partialTicks, PoseStack poseMatrix, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {
-        if (entity instanceof PokemonEntity pokemonEntity)
-            renderPokemonDebugText(poseMatrix, buffer, this.entityRenderDispatcher, pokemonEntity);
+        renderPokemonDebugText(poseMatrix, buffer, this.entityRenderDispatcher, entity);
+        var terastallizedType = getTerastallizedType(entity.getPokemon());
+        if (terastallizedType != null) {
+            renderTeraType(entity, terastallizedType);
+        }
     }
 }

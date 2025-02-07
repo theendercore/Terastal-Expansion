@@ -21,6 +21,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.util.Mth
 import org.joml.Quaternionf
+import org.joml.Vector3f
 import java.awt.Color
 
 val colorMap = mapOf(
@@ -33,8 +34,8 @@ val colorMap = mapOf(
     TeraTypes.FIGHTING to Color.ORANGE,
     TeraTypes.POISON to Color.MAGENTA,
     TeraTypes.GROUND to Color.DARK_GRAY,
-    TeraTypes.FLYING to Color.PINK,
-    TeraTypes.PSYCHIC to Color.LIGHT_GRAY,
+    TeraTypes.FLYING to Color.WHITE,
+    TeraTypes.PSYCHIC to Color.PINK,
     TeraTypes.BUG to Color.GREEN,
     TeraTypes.ROCK to Color.GRAY,
     TeraTypes.GHOST to Color.DARK_GRAY,
@@ -45,7 +46,8 @@ val colorMap = mapOf(
     TeraTypes.STELLAR to Color.BLUE
 )
 
-fun TeraType.getTeraTypeColor(): Color = colorMap[this] ?: Color.BLUE
+fun TeraType.getTeraTypeColor(): Color = colorMap[this] ?: Color(0xff009f)
+fun Color.toVec3f() = Vector3f(this.red.toFloat(), this.green.toFloat(), this.blue.toFloat())
 
 fun jsonToText(json: JsonElement, nesting: Int = 0): List<Component> = buildList {
     when (json) {
@@ -124,7 +126,7 @@ fun renderPokemonDebugText(
         }
 
         val textList = jsonToText(filterJson(json)).reversed().toMutableList()
-        textList.add(makeText("Terastallized Type: " + entity.pokemon.getTerastallizedType()))
+        textList.add(makeText("Terastallized Type: ").appendNull(entity.pokemon.getTerastallizedType()?.displayName))
         textList.add(makeText("Types: " + pokemon.types.joinToString(", ", "[ ", " ]") { it.name }))
         var len = 1
         for (component in textList) {
