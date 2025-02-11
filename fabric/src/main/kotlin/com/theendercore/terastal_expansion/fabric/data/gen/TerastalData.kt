@@ -2,6 +2,8 @@ package com.theendercore.terastal_expansion.fabric.data.gen
 
 import com.cobblemon.mod.common.block.GrowableStoneBlock
 import com.theendercore.terastal_expansion.data.TerastalTags
+import com.theendercore.terastal_expansion.data.TerastalWorldGen.TERA_SHARD_GEAODE
+import com.theendercore.terastal_expansion.data.TerastalWorldGen.TERA_SHARD_GEAODE_CFG
 import com.theendercore.terastal_expansion.init.TerastalBlocks
 import com.theendercore.terastal_expansion.init.TerastalTabs
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint
@@ -9,7 +11,9 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.*
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags
+import net.minecraft.core.Holder
 import net.minecraft.core.HolderLookup
+import net.minecraft.core.RegistrySetBuilder
 import net.minecraft.core.registries.Registries
 import net.minecraft.data.models.BlockModelGenerators
 import net.minecraft.data.models.ItemModelGenerators
@@ -19,15 +23,29 @@ import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.data.recipes.RecipeProvider.has
 import net.minecraft.data.recipes.ShapedRecipeBuilder
 import net.minecraft.data.recipes.ShapelessRecipeBuilder
+import net.minecraft.data.worldgen.BootstrapContext
+import net.minecraft.resources.ResourceKey
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.BlockTags
 import net.minecraft.tags.ItemTags
 import net.minecraft.tags.TagKey
+import net.minecraft.util.valueproviders.UniformInt
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.world.item.enchantment.Enchantments
 import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.levelgen.GeodeBlockSettings
+import net.minecraft.world.level.levelgen.GeodeCrackSettings
+import net.minecraft.world.level.levelgen.GeodeLayerSettings
+import net.minecraft.world.level.levelgen.VerticalAnchor
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature
+import net.minecraft.world.level.levelgen.feature.Feature
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration
+import net.minecraft.world.level.levelgen.feature.configurations.GeodeConfiguration
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider
+import net.minecraft.world.level.levelgen.placement.*
 import net.minecraft.world.level.storage.loot.LootPool.lootPool
 import net.minecraft.world.level.storage.loot.LootTable.lootTable
 import net.minecraft.world.level.storage.loot.entries.LootItem.lootTableItem
@@ -50,10 +68,77 @@ object TerastalData : DataGeneratorEntrypoint {
         val block = pack.addProvider(::TBlockTags)
         pack.addProvider { o, r -> TItemTags(o, r, block) }
         pack.addProvider(::TRecipes)
+        pack.addProvider { o, r ->
+            object : FabricDynamicRegistryProvider(o, r) {
+                override fun getName(): String = "Terastal Dynamic Registries"
+                override fun configure(h: HolderLookup.Provider, e: Entries) {
+                    e.addAll(h.lookupOrThrow(Registries.CONFIGURED_FEATURE))
+                    e.addAll(h.lookupOrThrow(Registries.PLACED_FEATURE))
+                }
+            }
+        }
     }
 
-
+    override fun buildRegistry(build: RegistrySetBuilder) {
+        super.buildRegistry(build)
+        build.add(Registries.CONFIGURED_FEATURE, TGeodes::configured)
+        build.add(Registries.PLACED_FEATURE, TGeodes::placed)
+    }
 }
+
+object TGeodes {
+    fun configured(c: BootstrapContext<ConfiguredFeature<*, *>>) {
+        c.registerConfiguredFeature(
+            TERA_SHARD_GEAODE_CFG, Feature.GEODE, GeodeConfiguration(
+                GeodeBlockSettings(
+                    Blocks.AIR.toProvider(),
+                    TerastalBlocks.TERA_GEM_BLOCK.toProvider(),
+                    TerastalBlocks.TERA_GEM_BLOCK.toProvider(),
+                    Blocks.CALCITE.toProvider(),
+                    Blocks.SMOOTH_BASALT.toProvider(),
+                    listOf(
+                        TerastalBlocks.SMALL_BUDDING_TERA_SHARD, TerastalBlocks.MEDIUM_BUDDING_TERA_SHARD,
+                        TerastalBlocks.LARGE_BUDDING_TERA_SHARD, TerastalBlocks.TERA_SHARD_CLUSTER
+                    ).map { it.defaultBlockState() },
+                    BlockTags.FEATURES_CANNOT_REPLACE,
+                    BlockTags.GEODE_INVALID_BLOCKS
+                ),
+                GeodeLayerSettings(1.7, 2.2, 3.2, 4.2),
+                GeodeCrackSettings(0.95, 2.0, 2),
+                0.35,
+                0.083,
+                false,
+                UniformInt.of(4, 6),
+                UniformInt.of(3, 4),
+                UniformInt.of(1, 2),
+                -16,
+                16,
+                0.05,
+                1
+            )
+        )
+    }
+
+    fun placed(c: BootstrapContext<PlacedFeature>) {
+        val geode = c.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(TERA_SHARD_GEAODE_CFG)
+        c.register(
+            TERA_SHARD_GEAODE, PlacedFeature(
+                geode, listOf(
+                    RarityFilter.onAverageOnceEvery(24),
+                    InSquarePlacement.spread(),
+                    HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(30)),
+                    BiomeFilter.biome()
+                )
+            )
+        )
+    }
+}
+
+fun <FC : FeatureConfiguration, F : Feature<FC>> BootstrapContext<ConfiguredFeature<*, *>>.registerConfiguredFeature(
+    key: ResourceKey<ConfiguredFeature<*, *>>, feature: F, featureConfig: FC
+): Holder.Reference<ConfiguredFeature<*, *>> = this.register(key, ConfiguredFeature(feature, featureConfig))
+
+fun Block.toProvider(): BlockStateProvider = BlockStateProvider.simple(this)
 
 val shardsToGems = mapOf(
     T.TERA_GEM_SHARD to T.TERA_GEM,

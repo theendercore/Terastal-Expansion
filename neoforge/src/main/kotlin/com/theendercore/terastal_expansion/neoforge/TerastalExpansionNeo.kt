@@ -9,7 +9,12 @@ import com.theendercore.terastal_expansion.misc.TerastalImplementation
 import com.theendercore.terastal_expansion.neoforge.client.TerastalExpansionNeoClient
 import com.theendercore.terastal_expansion.neoforge.net.TerastalNeoNetWorkManager
 import net.minecraft.core.registries.Registries
+import net.minecraft.resources.ResourceKey
+import net.minecraft.tags.TagKey
 import net.minecraft.world.item.CreativeModeTab
+import net.minecraft.world.level.biome.Biome
+import net.minecraft.world.level.levelgen.GenerationStep
+import net.minecraft.world.level.levelgen.placement.PlacedFeature
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.fml.common.Mod
 import net.neoforged.fml.loading.FMLEnvironment
@@ -23,6 +28,7 @@ class TerastalExpansionNeo : TerastalImplementation {
     init {
         with(MOD_BUS) {
             init(this@TerastalExpansionNeo)
+//            addListener(TerastalBiomeModifiers::register)
             addListener(networkManager::registerMessages)
         }
         TerastalExpansion.events()
@@ -48,4 +54,6 @@ class TerastalExpansionNeo : TerastalImplementation {
         it.register(TerastalBlocks.resourceKey) { helper -> TerastalBlocks.register(helper::register) }
     }
 
+    override fun addFeatureToWorldGen(feature: ResourceKey<PlacedFeature>, step: GenerationStep.Decoration, validTag: TagKey<Biome>?) {
+    }
 }

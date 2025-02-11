@@ -5,16 +5,21 @@ import com.cobblemon.mod.common.api.events.CobblemonEvents.BATTLE_FLED
 import com.cobblemon.mod.common.api.events.CobblemonEvents.BATTLE_VICTORY
 import com.cobblemon.mod.common.api.events.CobblemonEvents.POKEMON_SENT_POST
 import com.cobblemon.mod.common.api.events.CobblemonEvents.TERASTALLIZATION
+import com.theendercore.terastal_expansion.data.TerastalWorldGen
 import com.theendercore.terastal_expansion.misc.TerastalImplementation
 import com.theendercore.terastal_expansion.misc.clearTerastallizedType
 import com.theendercore.terastal_expansion.misc.getTerastallizedType
 import com.theendercore.terastal_expansion.misc.setTerastallizedType
 
 object TerastalExpansion {
+    lateinit var implementation: TerastalImplementation
     @JvmStatic
     fun init(tera: TerastalImplementation) {
+        implementation = tera
         tera.registerBlocks()
         tera.registerItems()
+
+        TerastalWorldGen.register()
     }
 
     fun events() {
@@ -31,4 +36,6 @@ object TerastalExpansion {
             event.winners.forEach { act -> act.pokemonList.forEach { it.originalPokemon.clearTerastallizedType() } }
         }
     }
+
+
 }
