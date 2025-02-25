@@ -10,6 +10,7 @@
     "client.SummaryMixin"
   ],
   "mixins": [
+    "TeraTypeMixin",
     "GraalShowdownServiceMixin",
     "PokemonBattleMixin",
     "PokemonMixin",
