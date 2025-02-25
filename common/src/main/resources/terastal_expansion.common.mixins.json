@@ -13,6 +13,7 @@
     "GraalShowdownServiceMixin",
     "PokemonBattleMixin",
     "PokemonMixin",
+    "RecipeManagerMixin",
     "ShowdownActionRequestMixin",
     "ShowdownInterpreterMixin"
   ],

@@ -15,5 +15,6 @@ sourceSets["main"].resources.srcDir("../generated")
 
 dependencies {
     compileOnly("net.fabricmc:sponge-mixin:${mixin_version}")
+    compileOnly("io.github.llamalad7:mixinextras-neoforge:0.4.1")
     modCompileOnly("com.cobblemon:mod:${cobblemon_version}") { isTransitive = false }
 }

@@ -9,20 +9,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.UUID;
 
-import static com.theendercore.terastal_expansion.TerastalConst.log;
 import static com.theendercore.terastal_expansion.misc.CustomLogKt.addLog;
 
 @Mixin(value = GraalShowdownService.class, remap = false)
 public class GraalShowdownServiceMixin {
     @Inject(method = "startBattle", at = @At("HEAD"))
     void dumpStartBattle(PokemonBattle battle, String[] messages, CallbackInfo ci) {
-        log.info("Start Battle: [{}] - {}", battle.getBattleId(), messages);
         addLog((Object[]) messages);
     }
 
     @Inject(method = "send", at = @At("HEAD"))
     void dumpSendMessage(UUID battleId, String[] messages, CallbackInfo ci){
-        log.info("Battle msg: [{}] - {}", battleId, messages);
         addLog((Object[]) messages);
     }
 }

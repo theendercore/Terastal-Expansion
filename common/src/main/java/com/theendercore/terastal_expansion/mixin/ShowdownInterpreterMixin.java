@@ -1,7 +1,6 @@
 package com.theendercore.terastal_expansion.mixin;
 
 import com.cobblemon.mod.common.battles.ShowdownInterpreter;
-import com.theendercore.terastal_expansion.TerastalConst;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -15,8 +14,7 @@ import static com.theendercore.terastal_expansion.misc.CustomLogKt.addLog;
 public class ShowdownInterpreterMixin {
 
     @Inject(method = "interpretMessage", at = @At("HEAD"))
-    void x(UUID battleId, String message, CallbackInfo ci){
-        TerastalConst.log.info("Server msg: [{}] - {}", battleId, message);
+    void x(UUID battleId, String message, CallbackInfo ci) {
         addLog(message);
     }
 }
