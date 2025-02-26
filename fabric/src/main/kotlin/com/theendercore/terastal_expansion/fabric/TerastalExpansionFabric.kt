@@ -3,6 +3,7 @@ package com.theendercore.terastal_expansion.fabric
 import com.theendercore.terastal_expansion.TerastalExpansion
 import com.theendercore.terastal_expansion.fabric.net.TerastalFabricNetworkManager
 import com.theendercore.terastal_expansion.init.TerastalBlocks
+import com.theendercore.terastal_expansion.init.TerastalItemComponents
 import com.theendercore.terastal_expansion.init.TerastalItems
 import com.theendercore.terastal_expansion.init.TerastalTabs
 import com.theendercore.terastal_expansion.misc.TerastalImplementation
@@ -49,5 +50,9 @@ object TerastalExpansionFabric : ModInitializer, TerastalImplementation {
         val predicate: (BiomeSelectionContext) -> Boolean =
             if (validTag != null) { it -> it.hasTag(validTag) } else { it -> it.hasTag(BiomeTags.IS_OVERWORLD) }
         BiomeModifications.addFeature(predicate, step, feature)
+    }
+
+    override fun registerDataComponents() {
+        TerastalItemComponents.register { identifier, component -> Registry.register(TerastalItemComponents.registry, identifier, component) }
     }
 }

@@ -10,13 +10,14 @@
     "client.SummaryMixin"
   ],
   "mixins": [
-    "TeraTypeMixin",
     "GraalShowdownServiceMixin",
+    "HealingMachineBlockMixin",
     "PokemonBattleMixin",
     "PokemonMixin",
     "RecipeManagerMixin",
     "ShowdownActionRequestMixin",
-    "ShowdownInterpreterMixin"
+    "ShowdownInterpreterMixin",
+    "TeraTypeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -3,6 +3,7 @@ package com.theendercore.terastal_expansion.neoforge
 import com.theendercore.terastal_expansion.TerastalExpansion
 import com.theendercore.terastal_expansion.TerastalExpansion.init
 import com.theendercore.terastal_expansion.init.TerastalBlocks
+import com.theendercore.terastal_expansion.init.TerastalItemComponents
 import com.theendercore.terastal_expansion.init.TerastalItems
 import com.theendercore.terastal_expansion.init.TerastalTabs
 import com.theendercore.terastal_expansion.misc.TerastalImplementation
@@ -54,6 +55,16 @@ class TerastalExpansionNeo : TerastalImplementation {
         it.register(TerastalBlocks.resourceKey) { helper -> TerastalBlocks.register(helper::register) }
     }
 
-    override fun addFeatureToWorldGen(feature: ResourceKey<PlacedFeature>, step: GenerationStep.Decoration, validTag: TagKey<Biome>?) {
+    override fun addFeatureToWorldGen(
+        feature: ResourceKey<PlacedFeature>,
+        step: GenerationStep.Decoration,
+        validTag: TagKey<Biome>?
+    ) {
+    }
+
+    override fun registerDataComponents() {
+        MOD_BUS.addListener<RegisterEvent> { event ->
+            event.register(TerastalItemComponents.resourceKey) { helper -> TerastalItemComponents.register(helper::register) }
+        }
     }
 }

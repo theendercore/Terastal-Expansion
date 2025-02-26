@@ -14,4 +14,5 @@ interface TerastalImplementation {
     fun addFeatureToWorldGen(
         feature: ResourceKey<PlacedFeature>, step: GenerationStep.Decoration, validTag: TagKey<Biome>? = null
     )
+    fun registerDataComponents()
 }
