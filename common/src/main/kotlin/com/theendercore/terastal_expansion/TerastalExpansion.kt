@@ -13,6 +13,7 @@ import com.theendercore.terastal_expansion.misc.setTerastallizedType
 
 object TerastalExpansion {
     lateinit var implementation: TerastalImplementation
+
     @JvmStatic
     fun init(tera: TerastalImplementation) {
         implementation = tera
@@ -25,7 +26,7 @@ object TerastalExpansion {
     fun events() {
         POKEMON_SENT_POST.subscribe {
             it.pokemonEntity.pokemon.teraType = it.pokemon.teraType
-            it.pokemonEntity.pokemon.setTerastallizedType(it.pokemon.getTerastallizedType())
+            it.pokemonEntity.pokemon.setTerastallizedType(if (it.pokemonEntity.isBattling) it.pokemon.getTerastallizedType() else null)
         }
 
         TERASTALLIZATION.subscribe { it.pokemon.originalPokemon.setTerastallizedType(it.teraType) }
