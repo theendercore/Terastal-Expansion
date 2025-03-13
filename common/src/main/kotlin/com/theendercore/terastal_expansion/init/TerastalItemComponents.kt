@@ -18,11 +18,6 @@ object TerastalItemComponents : TPlatformRegistry<Registry<DataComponentType<*>>
             .build()
     )
 
-  /*  fun register() {
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, id("charge"), CHARGE)
-    }*/
-
     override val registry = BuiltInRegistries.DATA_COMPONENT_TYPE
     override val resourceKey = Registries.DATA_COMPONENT_TYPE
-
 }

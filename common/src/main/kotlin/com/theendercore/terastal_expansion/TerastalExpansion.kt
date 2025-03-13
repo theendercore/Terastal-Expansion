@@ -34,12 +34,16 @@ object TerastalExpansion {
     fun events() {
         POKEMON_SENT_POST.subscribe {
             it.pokemonEntity.pokemon.teraType = it.pokemon.teraType
-            it.pokemonEntity.pokemon.setTerastallizedType(if (it.pokemonEntity.isBattling) it.pokemon.getTerastallizedType() else null)
+            val type = if (it.pokemonEntity.isBattling && it.pokemon.getTerastallizedType() != null)
+                it.pokemon.getTerastallizedType()
+            else null
+            it.pokemonEntity.pokemon.setTerastallizedType(type)
         }
         TERASTALLIZATION.subscribe { event ->
             event.pokemon.originalPokemon.setTerastallizedType(event.teraType)
             event.pokemon.originalPokemon.getOwnerPlayer()?.let { player ->
-                player.inventory.items.find { it.item is TeraOrbItem }?.let { player.useCharge(it) }?: log.info("Failed")
+                player.inventory.items.find { it.item is TeraOrbItem }?.let { player.useCharge(it) }
+                    ?: log.info("Failed to remove charge from TeraOrb for player: ${player.name}!")
             }
         }
         BATTLE_FLED.subscribe { event -> event.player.pokemonList.forEach { it.originalPokemon.clearTerastallizedType() } }

@@ -53,7 +53,7 @@ import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue
 import java.util.concurrent.CompletableFuture
-import com.theendercore.terastal_expansion.init.TerastalItems as T
+import com.theendercore.terastal_expansion.init.TerastalItems as TItems
 
 typealias Pack = FabricDataOutput
 typealias FutureLookup = CompletableFuture<HolderLookup.Provider>
@@ -141,26 +141,26 @@ fun <FC : FeatureConfiguration, F : Feature<FC>> BootstrapContext<ConfiguredFeat
 fun Block.toProvider(): BlockStateProvider = BlockStateProvider.simple(this)
 
 val shardsToGems = mapOf(
-    T.TERA_GEM_SHARD to T.TERA_GEM,
-    T.NORMAL_TERA_SHARD to T.NORMAL_TERA_GEM,
-    T.FIRE_TERA_SHARD to T.FIRE_TERA_GEM,
-    T.WATER_TERA_SHARD to T.WATER_TERA_GEM,
-    T.ELECTRIC_TERA_SHARD to T.ELECTRIC_TERA_GEM,
-    T.GRASS_TERA_SHARD to T.GRASS_TERA_GEM,
-    T.ICE_TERA_SHARD to T.ICE_TERA_GEM,
-    T.FIGHTING_TERA_SHARD to T.FIGHTING_TERA_GEM,
-    T.POISON_TERA_SHARD to T.POISON_TERA_GEM,
-    T.GROUND_TERA_SHARD to T.GROUND_TERA_GEM,
-    T.FLYING_TERA_SHARD to T.FLYING_TERA_GEM,
-    T.PSYCHIC_TERA_SHARD to T.PSYCHIC_TERA_GEM,
-    T.BUG_TERA_SHARD to T.BUG_TERA_GEM,
-    T.ROCK_TERA_SHARD to T.ROCK_TERA_GEM,
-    T.GHOST_TERA_SHARD to T.GHOST_TERA_GEM,
-    T.DRAGON_TERA_SHARD to T.DRAGON_TERA_GEM,
-    T.DARK_TERA_SHARD to T.DARK_TERA_GEM,
-    T.STEEL_TERA_SHARD to T.STEEL_TERA_GEM,
-    T.FAIRY_TERA_SHARD to T.FAIRY_TERA_GEM,
-    T.STELLAR_TERA_SHARD to T.STELLAR_TERA_GEM,
+    TItems.TERA_GEM_SHARD to TItems.TERA_GEM,
+    TItems.NORMAL_TERA_SHARD to TItems.NORMAL_TERA_GEM,
+    TItems.FIRE_TERA_SHARD to TItems.FIRE_TERA_GEM,
+    TItems.WATER_TERA_SHARD to TItems.WATER_TERA_GEM,
+    TItems.ELECTRIC_TERA_SHARD to TItems.ELECTRIC_TERA_GEM,
+    TItems.GRASS_TERA_SHARD to TItems.GRASS_TERA_GEM,
+    TItems.ICE_TERA_SHARD to TItems.ICE_TERA_GEM,
+    TItems.FIGHTING_TERA_SHARD to TItems.FIGHTING_TERA_GEM,
+    TItems.POISON_TERA_SHARD to TItems.POISON_TERA_GEM,
+    TItems.GROUND_TERA_SHARD to TItems.GROUND_TERA_GEM,
+    TItems.FLYING_TERA_SHARD to TItems.FLYING_TERA_GEM,
+    TItems.PSYCHIC_TERA_SHARD to TItems.PSYCHIC_TERA_GEM,
+    TItems.BUG_TERA_SHARD to TItems.BUG_TERA_GEM,
+    TItems.ROCK_TERA_SHARD to TItems.ROCK_TERA_GEM,
+    TItems.GHOST_TERA_SHARD to TItems.GHOST_TERA_GEM,
+    TItems.DRAGON_TERA_SHARD to TItems.DRAGON_TERA_GEM,
+    TItems.DARK_TERA_SHARD to TItems.DARK_TERA_GEM,
+    TItems.STEEL_TERA_SHARD to TItems.STEEL_TERA_GEM,
+    TItems.FAIRY_TERA_SHARD to TItems.FAIRY_TERA_GEM,
+    TItems.STELLAR_TERA_SHARD to TItems.STELLAR_TERA_GEM,
 )
 
 class TModels(o: Pack) : FabricModelProvider(o) {
@@ -176,12 +176,12 @@ class TModels(o: Pack) : FabricModelProvider(o) {
     }
 
     override fun generateItemModels(gen: ItemModelGenerators) =
-        T.all().filter { it !is BlockItem }.forEach(gen::registerPlain)
+        TItems.all().filter { it !is BlockItem }.forEach(gen::registerPlain)
 }
 
 class EnLang(o: Pack, r: FutureLookup) : FabricLanguageProvider(o, r) {
     override fun generateTranslations(registryLookup: HolderLookup.Provider, gen: TranslationBuilder) {
-        T.register { id, item -> gen.add(item, genLang(id)) }
+        TItems.register { id, item -> gen.add(item, genLang(id)) }
         TerastalTabs.TERASTAL_TAB.let { gen.add(it, genLang(it.location())) }
         TerastalTags.ITEM_TAGS.forEach { gen.add(it, genLang(it.location)) }
     }
@@ -202,7 +202,7 @@ class LootTables(o: Pack, r: FutureLookup) : FabricBlockLootTableProvider(o, r) 
             lootTable().withPool(
                 lootPool().add(
                     lootTableItem(TerastalBlocks.TERA_GEM_BLOCK).`when`(hasSilkTouch()).otherwise(
-                        lootTableItem(T.TERA_GEM_SHARD).apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0f)))
+                        lootTableItem(TItems.TERA_GEM_SHARD).apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0f)))
                     )
                 )
             )
@@ -213,7 +213,7 @@ class LootTables(o: Pack, r: FutureLookup) : FabricBlockLootTableProvider(o, r) 
                 lootPool().add(
                     lootTableItem(TerastalBlocks.TERA_SHARD_CLUSTER).`when`(hasSilkTouch())
                         .otherwise(
-                            lootTableItem(T.TERA_GEM_SHARD)
+                            lootTableItem(TItems.TERA_GEM_SHARD)
                                 .apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0f)))
                                 .apply(ApplyBonusCount.addOreBonusCount(registryLookup.getOrThrow(Enchantments.FORTUNE)))
                         )
@@ -248,17 +248,17 @@ class TItemTags(o: Pack, r: FutureLookup, b: BlockTagProvider) : FabricTagProvid
 
 class TRecipes(o: Pack, r: FutureLookup) : FabricRecipeProvider(o, r) {
     override fun buildRecipes(exporter: RecipeOutput) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, T.TERA_ORB)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, TItems.TERA_ORB)
             .pattern("SSS")
             .pattern("ODO")
             .pattern("SSS")
-            .define('S', T.TERA_GEM_SHARD)
+            .define('S', TItems.TERA_GEM_SHARD)
             .define('D', Items.DIAMOND)
             .define('O', Items.OBSIDIAN)
-            .unlockedBy("has_shard", has(T.TERA_GEM_SHARD))
+            .unlockedBy("has_shard", has(TItems.TERA_GEM_SHARD))
             .save(exporter)
 
-        twoByTwoPacker(exporter, RecipeCategory.MISC, TerastalBlocks.TERA_GEM_BLOCK, T.TERA_GEM)
+        twoByTwoPacker(exporter, RecipeCategory.MISC, TerastalBlocks.TERA_GEM_BLOCK, TItems.TERA_GEM)
 
         shardsToGems.forEach { (shard, gem) ->
             ShapedRecipeBuilder.shaped(RecipeCategory.MISC, gem)
@@ -271,40 +271,40 @@ class TRecipes(o: Pack, r: FutureLookup) : FabricRecipeProvider(o, r) {
                 .save(exporter)
         }
 
-        twoByTwoPacker(exporter, RecipeCategory.MISC, T.STELLAR_TERA_SHARD, TerastalBlocks.TERA_GEM_BLOCK)
+        twoByTwoPacker(exporter, RecipeCategory.MISC, TItems.STELLAR_TERA_SHARD, TerastalBlocks.TERA_GEM_BLOCK)
 
-        exporter.shard(T.NORMAL_TERA_SHARD, ItemTags.WOOL)
-        exporter.shard(T.GRASS_TERA_SHARD, Items.WHEAT_SEEDS)
-        exporter.shard(T.FIRE_TERA_SHARD, Items.COAL)
-        exporter.shard(T.WATER_TERA_SHARD, Items.WATER_BUCKET)
-        exporter.shard(T.ELECTRIC_TERA_SHARD, Items.REDSTONE)
-        exporter.shard(T.ICE_TERA_SHARD, Items.ICE)
-        exporter.shard(T.FIGHTING_TERA_SHARD, ItemTags.SWORDS)
-        exporter.shard(T.POISON_TERA_SHARD, TerastalTags.POISON_ITEMS)
-        exporter.shard(T.GROUND_TERA_SHARD, Items.DIRT)
-        exporter.shard(T.FLYING_TERA_SHARD, Items.FEATHER)
-        exporter.shard(T.PSYCHIC_TERA_SHARD, TerastalTags.PSYCHIC_ITEMS)
-        exporter.shard(T.BUG_TERA_SHARD, TerastalTags.BUG_ITEMS)
-        exporter.shard(T.ROCK_TERA_SHARD, ConventionalItemTags.COBBLESTONES)
-        exporter.shard(T.GHOST_TERA_SHARD, TerastalTags.GHOST_ITEMS)
-        exporter.shard(T.DRAGON_TERA_SHARD, TerastalTags.DRAGON_ITEMS)
-        exporter.shard(T.DARK_TERA_SHARD, TerastalTags.DARK_ITEMS)
-        exporter.shard(T.STEEL_TERA_SHARD, Items.IRON_BLOCK)
-        exporter.shard(T.FAIRY_TERA_SHARD, ItemTags.FLOWERS)
+        exporter.shard(TItems.NORMAL_TERA_SHARD, ItemTags.WOOL)
+        exporter.shard(TItems.GRASS_TERA_SHARD, Items.WHEAT_SEEDS)
+        exporter.shard(TItems.FIRE_TERA_SHARD, Items.COAL)
+        exporter.shard(TItems.WATER_TERA_SHARD, Items.WATER_BUCKET)
+        exporter.shard(TItems.ELECTRIC_TERA_SHARD, Items.REDSTONE)
+        exporter.shard(TItems.ICE_TERA_SHARD, Items.ICE)
+        exporter.shard(TItems.FIGHTING_TERA_SHARD, ItemTags.SWORDS)
+        exporter.shard(TItems.POISON_TERA_SHARD, TerastalTags.POISON_ITEMS)
+        exporter.shard(TItems.GROUND_TERA_SHARD, Items.DIRT)
+        exporter.shard(TItems.FLYING_TERA_SHARD, Items.FEATHER)
+        exporter.shard(TItems.PSYCHIC_TERA_SHARD, TerastalTags.PSYCHIC_ITEMS)
+        exporter.shard(TItems.BUG_TERA_SHARD, TerastalTags.BUG_ITEMS)
+        exporter.shard(TItems.ROCK_TERA_SHARD, ConventionalItemTags.COBBLESTONES)
+        exporter.shard(TItems.GHOST_TERA_SHARD, TerastalTags.GHOST_ITEMS)
+        exporter.shard(TItems.DRAGON_TERA_SHARD, TerastalTags.DRAGON_ITEMS)
+        exporter.shard(TItems.DARK_TERA_SHARD, TerastalTags.DARK_ITEMS)
+        exporter.shard(TItems.STEEL_TERA_SHARD, Items.IRON_BLOCK)
+        exporter.shard(TItems.FAIRY_TERA_SHARD, ItemTags.FLOWERS)
     }
 }
 
 fun RecipeOutput.shard(output: Item, add: Item) = ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output)
-    .requires(T.TERA_GEM_SHARD).requires(add)
-    .unlockedBy("has_shard", has(T.TERA_GEM_SHARD))
+    .requires(TItems.TERA_GEM_SHARD).requires(add)
+    .unlockedBy("has_shard", has(TItems.TERA_GEM_SHARD))
     .save(this)
 
 fun RecipeOutput.shard(output: Item, add: TagKey<Item>) = ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, output)
-    .requires(T.TERA_GEM_SHARD).requires(add)
-    .unlockedBy("has_shard", has(T.TERA_GEM_SHARD))
+    .requires(TItems.TERA_GEM_SHARD).requires(add)
+    .unlockedBy("has_shard", has(TItems.TERA_GEM_SHARD))
     .save(this)
 
-fun FabricBlockLootTableProvider.tumblestoneDrop(block: Block, item: Item = T.TERA_GEM_SHARD) = add(block) {
+fun FabricBlockLootTableProvider.tumblestoneDrop(block: Block, item: Item = TItems.TERA_GEM_SHARD) = add(block) {
     lootTable().withPool(lootPool().add(lootTableItem(block).`when`(hasSilkTouch()).otherwise(lootTableItem(item))))
 }
 

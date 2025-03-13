@@ -1,7 +1,8 @@
 package com.theendercore.terastal_expansion.misc
 
 import com.cobblemon.mod.common.api.types.tera.TeraType
-import com.cobblemon.mod.common.api.types.tera.TeraTypes
+import com.cobblemon.mod.common.api.types.tera.elemental.ElementalTypeTeraType
+import com.cobblemon.mod.common.api.types.tera.gimmick.StellarTeraType
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.math.DoubleRange
@@ -24,30 +25,12 @@ import org.joml.Quaternionf
 import org.joml.Vector3f
 import java.awt.Color
 
-val colorMap = mapOf(
-    TeraTypes.NORMAL to Color.WHITE,
-    TeraTypes.FIRE to Color.RED,
-    TeraTypes.WATER to Color.BLUE,
-    TeraTypes.GRASS to Color.GREEN,
-    TeraTypes.ELECTRIC to Color.YELLOW,
-    TeraTypes.ICE to Color.CYAN,
-    TeraTypes.FIGHTING to Color.ORANGE,
-    TeraTypes.POISON to Color.MAGENTA,
-    TeraTypes.GROUND to Color.DARK_GRAY,
-    TeraTypes.FLYING to Color.WHITE,
-    TeraTypes.PSYCHIC to Color.PINK,
-    TeraTypes.BUG to Color.GREEN,
-    TeraTypes.ROCK to Color.GRAY,
-    TeraTypes.GHOST to Color.DARK_GRAY,
-    TeraTypes.DRAGON to Color.MAGENTA,
-    TeraTypes.DARK to Color.BLACK,
-    TeraTypes.STEEL to Color.LIGHT_GRAY,
-    TeraTypes.FAIRY to Color.PINK,
-    TeraTypes.STELLAR to Color.BLUE
-)
-
-fun TeraType.getTeraTypeColor(): Color = colorMap[this] ?: Color(0xff009f)
 fun Color.toVec3f() = Vector3f(this.red.toFloat(), this.green.toFloat(), this.blue.toFloat())
+fun TeraType.getTeraTypeColor(): Color = when (this) {
+    is ElementalTypeTeraType -> Color(type.hue)
+    is StellarTeraType -> Color(0xffffff)
+    else -> Color(0)
+}
 
 fun jsonToText(json: JsonElement, nesting: Int = 0): List<Component> = buildList {
     when (json) {
