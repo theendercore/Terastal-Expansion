@@ -2,13 +2,10 @@ package com.theendercore.terastal_expansion.neoforge
 
 import com.theendercore.terastal_expansion.TerastalExpansion
 import com.theendercore.terastal_expansion.TerastalExpansion.init
-import com.theendercore.terastal_expansion.init.TerastalBlocks
-import com.theendercore.terastal_expansion.init.TerastalItemComponents
-import com.theendercore.terastal_expansion.init.TerastalItems
-import com.theendercore.terastal_expansion.init.TerastalTabs
-import com.theendercore.terastal_expansion.misc.TerastalImplementation
+import com.theendercore.terastal_expansion.init.*
 import com.theendercore.terastal_expansion.neoforge.client.TerastalExpansionNeoClient
 import com.theendercore.terastal_expansion.neoforge.net.TerastalNeoNetWorkManager
+import com.theendercore.terastal_expansion.registry.TerastalImplementation
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceKey
 import net.minecraft.tags.TagKey
@@ -66,5 +63,9 @@ class TerastalExpansionNeo : TerastalImplementation {
         MOD_BUS.addListener<RegisterEvent> { event ->
             event.register(TerastalItemComponents.resourceKey) { helper -> TerastalItemComponents.register(helper::register) }
         }
+    }
+
+    override fun registerParticles() = MOD_BUS.addListener<RegisterEvent> {
+        it.register(TerastalParticles.resourceKey) { helper -> TerastalParticles.register(helper::register) }
     }
 }

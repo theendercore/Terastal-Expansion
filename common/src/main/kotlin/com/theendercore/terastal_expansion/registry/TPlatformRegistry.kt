@@ -9,12 +9,6 @@ abstract class TPlatformRegistry<R : Registry<T>, K : ResourceKey<R>, T> : Platf
     override fun <E : T> create(name: String, entry: E): E {
         val identifier = id(name)
         this.queue[identifier] = entry
-      /*  if (entry is BagItemConvertible) {
-            BagItems.bagItems.add(
-                priority = Priority.NORMAL,
-                value = entry
-            )
-        }*/
         return entry
     }
 }

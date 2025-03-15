@@ -9,18 +9,18 @@ import java.io.FileNotFoundException
 data class TerastalConfig(val orbMaxCharges: Int = 10)
 
 object TeraConfigObj {
+    private val gson = Gson()
+    var cfg = TerastalConfig()
+
+    private const val PATH = "./config/terastal_expansion.json"
+
     init {
         loadConfig()
     }
 
-    private val gson = Gson()
-    var cfg = TerastalConfig()
-
-    private val path = "./config/terastal_expansion.json"
-
     fun loadConfig() = try {
         // Read file content
-        val configFile = File(path)
+        val configFile = File(PATH)
         val jsonContent = configFile.bufferedReader().use { it.readText() }
 
         // Parse JSON to AppConfig
@@ -38,7 +38,9 @@ object TeraConfigObj {
 
 
     fun saveConfig(config: TerastalConfig) = try {
-        File(path).writeText(gson.toJson(config))
+        val file = File(PATH)
+        if (!file.exists()) file.createNewFile()
+        file.writeText(gson.toJson(config))
     } catch (e: Exception) {
         log.error("Could not save configuration file!", e)
     }

@@ -1,4 +1,4 @@
-package com.theendercore.terastal_expansion.misc
+package com.theendercore.terastal_expansion.registry
 
 import com.cobblemon.mod.common.NetworkManager
 import net.minecraft.resources.ResourceKey
@@ -15,4 +15,5 @@ interface TerastalImplementation {
         feature: ResourceKey<PlacedFeature>, step: GenerationStep.Decoration, validTag: TagKey<Biome>? = null
     )
     fun registerDataComponents()
+    fun registerParticles()
 }

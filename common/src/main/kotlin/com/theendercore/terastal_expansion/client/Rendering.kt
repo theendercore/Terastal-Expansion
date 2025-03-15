@@ -3,13 +3,25 @@ package com.theendercore.terastal_expansion.client
 import com.cobblemon.mod.common.api.types.tera.TeraType
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.theendercore.terastal_expansion.misc.getTeraTypeColor
-import com.theendercore.terastal_expansion.misc.toVec3f
 import net.minecraft.client.Minecraft
-import net.minecraft.core.particles.DustParticleOptions
 
 fun renderTeraType(entity: PokemonEntity, terastallizedType: TeraType) {
-//    val size = entity.getDimensions(entity.pose)
+    if (Minecraft.getInstance().isPaused) return
+
+    val size = entity.getDimensions(entity.pose)
+    val world = entity.level()
+    val random = world.random
+    if (random.nextInt(2) != 0) return
+
     val color = terastallizedType.getTeraTypeColor()
-    Minecraft.getInstance().particleEngine.createTrackingEmitter(entity, DustParticleOptions(color.toVec3f(), 1f))
+    val offset = (size.width + 1.35)
+
+    world.addParticle(
+        color,
+        entity.x + (random.nextDouble() - 0.5) * offset,
+        entity.y + (random.nextDouble() - 0.01) * size.height,
+        entity.z + (random.nextDouble() - 0.5) * offset,
+        0.0, 0.0, 0.0
+    )
 
 }

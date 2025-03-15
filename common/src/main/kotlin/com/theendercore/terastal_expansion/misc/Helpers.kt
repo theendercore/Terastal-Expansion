@@ -7,17 +7,20 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.math.DoubleRange
 import com.cobblemon.mod.common.util.math.remap
+import com.cobblemon.mod.common.util.math.toRGB
 import com.google.gson.JsonArray
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.google.gson.JsonPrimitive
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.serialization.JsonOps
+import com.theendercore.terastal_expansion.init.TerastalParticles
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Font
 import net.minecraft.client.particle.SingleQuadParticle
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher
+import net.minecraft.core.particles.ColorParticleOption
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.util.Mth
@@ -26,11 +29,18 @@ import org.joml.Vector3f
 import java.awt.Color
 
 fun Color.toVec3f() = Vector3f(this.red.toFloat(), this.green.toFloat(), this.blue.toFloat())
-fun TeraType.getTeraTypeColor(): Color = when (this) {
-    is ElementalTypeTeraType -> Color(type.hue)
-    is StellarTeraType -> Color(0xffffff)
-    else -> Color(0)
+fun TeraType.getTeraTypeColor(): ColorParticleOption = when (this) {
+    is ElementalTypeTeraType -> {
+        val color = type.hue.toRGB()
+        particle(color.first, color.second, color.third)
+    }
+
+    is StellarTeraType -> particle(255f, 255f, 255f)
+    else -> particle(0f, 0f, 0f)
 }
+
+fun particle(red: Number, green: Number, blue: Number) =
+    ColorParticleOption.create(TerastalParticles.TERASTAL_PARTICLE_TYPE, red.toFloat(), green.toFloat(), blue.toFloat())
 
 fun jsonToText(json: JsonElement, nesting: Int = 0): List<Component> = buildList {
     when (json) {

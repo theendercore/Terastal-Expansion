@@ -11,7 +11,7 @@ import com.theendercore.terastal_expansion.data.TerastalWorldGen
 import com.theendercore.terastal_expansion.item.TeraOrbItem
 import com.theendercore.terastal_expansion.item.TeraOrbItem.Companion.refill
 import com.theendercore.terastal_expansion.item.TeraOrbItem.Companion.useCharge
-import com.theendercore.terastal_expansion.misc.TerastalImplementation
+import com.theendercore.terastal_expansion.registry.TerastalImplementation
 import com.theendercore.terastal_expansion.misc.clearTerastallizedType
 import com.theendercore.terastal_expansion.misc.getTerastallizedType
 import com.theendercore.terastal_expansion.misc.setTerastallizedType
@@ -26,6 +26,7 @@ object TerastalExpansion {
         tera.registerBlocks()
         tera.registerItems()
         tera.registerDataComponents()
+        tera.registerParticles()
         TeraConfigObj.loadConfig()
 
         TerastalWorldGen.register()

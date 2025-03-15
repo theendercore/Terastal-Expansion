@@ -1,6 +1,5 @@
 package com.theendercore.terastal_expansion.item
 
-import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.api.item.PokemonSelectingItem
 import com.cobblemon.mod.common.api.types.tera.TeraType
 import com.cobblemon.mod.common.item.CobblemonItem
@@ -9,9 +8,9 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.sendParticlesServer
 import com.theendercore.terastal_expansion.misc.text
 import net.minecraft.core.particles.DustParticleOptions
-import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
+import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder
 import net.minecraft.world.entity.player.Player
@@ -29,7 +28,7 @@ class TeraGemItem(val type: TeraType) : CobblemonItem(Properties()), PokemonSele
     override fun applyToPokemon(player: ServerPlayer, stack: ItemStack, pokemon: Pokemon)
             : InteractionResultHolder<ItemStack> {
         if (pokemon.teraType == type) return InteractionResultHolder.pass(stack)
-        pokemon.entity?.playSound(CobblemonSounds.EVOLUTION_NOTIFICATION, 1F, 1F)
+        pokemon.entity?.playSound(SoundEvents.AMETHYST_BLOCK_CHIME, 10F, 10F)
         if (!player.isCreative) stack.shrink(1)
         pokemon.teraType = type
         pokemon.notify(TeraTypeUpdatePacket({ pokemon }, type))
@@ -40,7 +39,7 @@ class TeraGemItem(val type: TeraType) : CobblemonItem(Properties()), PokemonSele
                 DustParticleOptions(Vector3f(1f, 1f, 1f), 1f),
                 it.position(),
                 45,
-                Vec3(it.bbWidth / 2.0, it.eyeHeight / 2.0, it.bbWidth / 2.0),
+                Vec3(it.bbWidth / 1.6, it.eyeHeight / 2.0, it.bbWidth / 1.6),
                 4.0
             )
         }
