@@ -1,5 +1,6 @@
 package com.theendercore.terastal_expansion.misc
 
+import com.cobblemon.mod.common.api.types.ElementalTypes
 import com.cobblemon.mod.common.api.types.tera.TeraType
 import com.cobblemon.mod.common.api.types.tera.elemental.ElementalTypeTeraType
 import com.cobblemon.mod.common.api.types.tera.gimmick.StellarTeraType
@@ -29,15 +30,11 @@ import org.joml.Vector3f
 import java.awt.Color
 
 fun Color.toVec3f() = Vector3f(this.red.toFloat(), this.green.toFloat(), this.blue.toFloat())
-fun TeraType.getTeraTypeColor(): ColorParticleOption = when (this) {
-    is ElementalTypeTeraType -> {
-        val color = type.hue.toRGB()
-        particle(color.first, color.second, color.third)
-    }
-
-    is StellarTeraType -> particle(255f, 255f, 255f)
-    else -> particle(0f, 0f, 0f)
-}
+fun TeraType.getParticle(): ColorParticleOption = when (this) {
+    is ElementalTypeTeraType -> type.hue.toRGB()
+    is StellarTeraType -> ElementalTypes.all().random().hue.toRGB()
+    else -> Triple(0f, 0f, 0f)
+}.let { particle(it.first, it.second, it.third) }
 
 fun particle(red: Number, green: Number, blue: Number) =
     ColorParticleOption.create(TerastalParticles.TERASTAL_PARTICLE_TYPE, red.toFloat(), green.toFloat(), blue.toFloat())

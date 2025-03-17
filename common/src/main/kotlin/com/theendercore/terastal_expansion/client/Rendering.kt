@@ -2,7 +2,7 @@ package com.theendercore.terastal_expansion.client
 
 import com.cobblemon.mod.common.api.types.tera.TeraType
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
-import com.theendercore.terastal_expansion.misc.getTeraTypeColor
+import com.theendercore.terastal_expansion.misc.getParticle
 import net.minecraft.client.Minecraft
 
 fun renderTeraType(entity: PokemonEntity, terastallizedType: TeraType) {
@@ -13,7 +13,7 @@ fun renderTeraType(entity: PokemonEntity, terastallizedType: TeraType) {
     val random = world.random
     if (random.nextInt(2) != 0) return
 
-    val color = terastallizedType.getTeraTypeColor()
+    val color = terastallizedType.getParticle()
     val offset = (size.width + 1.35)
 
     world.addParticle(
