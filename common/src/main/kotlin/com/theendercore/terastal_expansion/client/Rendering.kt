@@ -5,7 +5,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.theendercore.terastal_expansion.misc.getParticle
 import net.minecraft.client.Minecraft
 
-fun renderTeraType(entity: PokemonEntity, terastallizedType: TeraType) {
+fun teraTypeRenderer(entity: PokemonEntity, terastallizedType: TeraType) {
     if (Minecraft.getInstance().isPaused) return
 
     val size = entity.getDimensions(entity.pose)
