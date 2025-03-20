@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static com.theendercore.terastal_expansion.client.RenderingKt.teraTypeRenderer;
-import static com.theendercore.terastal_expansion.misc.MixinKt.getTerastallizedType;
+import static com.theendercore.terastal_expansion.misc.HelpersKt.getTerastallizedType;
 
 @Mixin(value = PokemonRenderer.class, remap = false)
 public abstract class PokemonRendererMixin<T extends Entity> extends EntityRenderer<T> {

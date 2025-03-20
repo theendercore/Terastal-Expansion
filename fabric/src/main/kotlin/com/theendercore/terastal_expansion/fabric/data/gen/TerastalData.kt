@@ -2,8 +2,8 @@ package com.theendercore.terastal_expansion.fabric.data.gen
 
 import com.cobblemon.mod.common.block.GrowableStoneBlock
 import com.theendercore.terastal_expansion.data.TerastalTags
-import com.theendercore.terastal_expansion.data.TerastalWorldGen.TERA_SHARD_GEAODE
-import com.theendercore.terastal_expansion.data.TerastalWorldGen.TERA_SHARD_GEAODE_CFG
+import com.theendercore.terastal_expansion.data.TerastalWorldGen.TERA_SHARD_GEODE
+import com.theendercore.terastal_expansion.data.TerastalWorldGen.TERA_SHARD_GEODE_CFG
 import com.theendercore.terastal_expansion.init.TerastalBlocks
 import com.theendercore.terastal_expansion.init.TerastalTabs
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint
@@ -89,7 +89,7 @@ object TerastalData : DataGeneratorEntrypoint {
 object TGeodes {
     fun configured(c: BootstrapContext<ConfiguredFeature<*, *>>) {
         c.registerConfiguredFeature(
-            TERA_SHARD_GEAODE_CFG, Feature.GEODE, GeodeConfiguration(
+            TERA_SHARD_GEODE_CFG, Feature.GEODE, GeodeConfiguration(
                 GeodeBlockSettings(
                     Blocks.AIR.toProvider(),
                     TerastalBlocks.TERA_GEM_BLOCK.toProvider(),
@@ -120,9 +120,9 @@ object TGeodes {
     }
 
     fun placed(c: BootstrapContext<PlacedFeature>) {
-        val geode = c.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(TERA_SHARD_GEAODE_CFG)
+        val geode = c.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(TERA_SHARD_GEODE_CFG)
         c.register(
-            TERA_SHARD_GEAODE, PlacedFeature(
+            TERA_SHARD_GEODE, PlacedFeature(
                 geode, listOf(
                     RarityFilter.onAverageOnceEvery(24),
                     InSquarePlacement.spread(),

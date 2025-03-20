@@ -34,15 +34,6 @@ class TeraOrbItem : CobblemonItem(Properties().stacksTo(1)) {
             else text("Charges: ${stack.getCharge()}/${config.orbMaxCharges}")
         )
     }
-
-    /* override fun useOn(context: UseOnContext): InteractionResult {
-         val charge = context.itemInHand.getCharge()
-         println(charge.toFloat() / config.orbMaxCharges.toFloat())
-         if (charge < 0) return super.useOn(context)
-         context.itemInHand.setCharge(if (charge == config.orbMaxCharges) 0 else charge + 1)
-         return super.useOn(context)
-     }*/
-
     companion object {
         @JvmStatic
         fun ItemStack.canUse(): Boolean {

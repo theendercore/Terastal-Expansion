@@ -27,7 +27,6 @@ class TerastalParticle(
             this.zd *= 0.1
         }
 
-//        this.quadSize *= 0.75f
         this.lifetime = (8.0 / (Math.random() * 0.8 + 0.2)).toInt()
         this.hasPhysics = false
         this.setSpriteFromAge(sprites)

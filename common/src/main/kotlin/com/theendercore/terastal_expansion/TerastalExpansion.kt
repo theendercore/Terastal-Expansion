@@ -11,10 +11,10 @@ import com.theendercore.terastal_expansion.data.TerastalWorldGen
 import com.theendercore.terastal_expansion.item.TeraOrbItem
 import com.theendercore.terastal_expansion.item.TeraOrbItem.Companion.refill
 import com.theendercore.terastal_expansion.item.TeraOrbItem.Companion.useCharge
-import com.theendercore.terastal_expansion.registry.TerastalImplementation
 import com.theendercore.terastal_expansion.misc.clearTerastallizedType
 import com.theendercore.terastal_expansion.misc.getTerastallizedType
 import com.theendercore.terastal_expansion.misc.setTerastallizedType
+import com.theendercore.terastal_expansion.registry.TerastalImplementation
 import net.minecraft.world.entity.player.Player
 
 object TerastalExpansion {

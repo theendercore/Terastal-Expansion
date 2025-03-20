@@ -6,12 +6,12 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.net.PacketRegisterInfo
 import com.cobblemon.mod.common.net.messages.client.PokemonUpdatePacket
 import com.cobblemon.mod.common.pokemon.Pokemon
-import com.theendercore.terastal_expansion.client.SpawnTerastalParticleHandler as TParticleHandler
-import com.theendercore.terastal_expansion.client.net.SpawnTerastalParticlePacket as TParticlePacket
 import com.theendercore.terastal_expansion.misc.setTerastallizedType
 import net.minecraft.client.Minecraft
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.TeraTypeUpdatePacket as TeraTypeUP
+import com.theendercore.terastal_expansion.client.SpawnTerastalParticleHandler as TParticleHandler
 import com.theendercore.terastal_expansion.client.net.HasTerastallizedStateUpdatePacket as HasTeraStateUP
+import com.theendercore.terastal_expansion.client.net.SpawnTerastalParticlePacket as TParticlePacket
 
 object TerastalNetwork {
     val s2cPayloads = generateS2CPacketInfoList()

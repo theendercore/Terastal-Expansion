@@ -16,8 +16,10 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.fml.common.Mod
 import net.neoforged.fml.loading.FMLEnvironment
+import net.neoforged.fml.loading.FMLLoader
 import net.neoforged.neoforge.registries.RegisterEvent
 import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
+import java.io.File
 
 @Mod("terastal_expansion")
 class TerastalExpansionNeo : TerastalImplementation {
@@ -68,4 +70,6 @@ class TerastalExpansionNeo : TerastalImplementation {
     override fun registerParticles() = MOD_BUS.addListener<RegisterEvent> {
         it.register(TerastalParticles.resourceKey) { helper -> TerastalParticles.register(helper::register) }
     }
+
+    override fun getConfigFile(path: String): File = FMLLoader.getGamePath().resolve("config").resolve(path).toFile()
 }

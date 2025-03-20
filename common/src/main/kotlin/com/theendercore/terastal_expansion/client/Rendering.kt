@@ -33,7 +33,7 @@ fun teraTypeRenderer(entity: PokemonEntity, terastallizedType: TeraType) {
 
 private val teraResource = id("textures/gui/summary/tera.png")
 fun summeryScreenIcon(ctx: GuiGraphics, type: TeraType, matrices: PoseStack, x: Int, y: Int) {
-    val scale2 = 1f //0.9375f
+    val scale2 = 1f
     blitk(
         matrixStack = matrices,
         texture = teraResource,

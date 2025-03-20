@@ -8,6 +8,7 @@ import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.core.Registry.register
 import net.minecraft.core.registries.BuiltInRegistries.CREATIVE_MODE_TAB
 import net.minecraft.resources.ResourceKey
@@ -16,6 +17,7 @@ import net.minecraft.tags.TagKey
 import net.minecraft.world.level.biome.Biome
 import net.minecraft.world.level.levelgen.GenerationStep
 import net.minecraft.world.level.levelgen.placement.PlacedFeature
+import java.io.File
 
 object TerastalExpansionFabric : ModInitializer, TerastalImplementation {
     override val networkManager = TerastalFabricNetworkManager
@@ -52,4 +54,5 @@ object TerastalExpansionFabric : ModInitializer, TerastalImplementation {
     override fun registerParticles() =
         with(TerastalParticles) { register { id, entry -> register(registry, id, entry) } }
 
+    override fun getConfigFile(path: String): File = FabricLoader.getInstance().configDir.resolve(path).toFile()
 }

@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static com.theendercore.terastal_expansion.misc.MixinKt.setTerastallizedType;
+import static com.theendercore.terastal_expansion.misc.HelpersKt.setTerastallizedType;
 
 
 @Mixin(value = PokemonBattle.class, remap = false)

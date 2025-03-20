@@ -5,7 +5,9 @@ import com.cobblemon.mod.common.api.types.tera.TeraTypes
 import com.cobblemon.mod.common.item.CobblemonItem
 import com.cobblemon.mod.common.item.TumblestoneItem
 import com.theendercore.terastal_expansion.init.TerastalBlocks.SMALL_BUDDING_TERA_SHARD
-import com.theendercore.terastal_expansion.item.*
+import com.theendercore.terastal_expansion.item.TeraGemItem
+import com.theendercore.terastal_expansion.item.TeraOrbItem
+import com.theendercore.terastal_expansion.item.TerastallizerItem
 import com.theendercore.terastal_expansion.registry.TPlatformRegistry
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
