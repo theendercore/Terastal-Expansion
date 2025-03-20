@@ -12,8 +12,7 @@ class TerastalParticle(
     xSpeed: Double, ySpeed: Double, zSpeed: Double,
     private var sprites: SpriteSet
 ) : TextureSheetParticle(
-    level, x, y, z,
-    0.5 - level.random.nextDouble(), ySpeed, 0.5 - level.random.nextDouble()
+    level, x, y, z, 0.5 - level.random.nextDouble(), ySpeed, 0.5 - level.random.nextDouble()
 ) {
     private var originalAlpha = 1.0f
 

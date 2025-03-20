@@ -12,8 +12,8 @@ class TerastalButton(moveSelection: BattleMoveSelection, x: Float, y: Float) :
     class TerastalTile(moveSelection: BattleMoveSelection, move: InBattleMove, x: Float, y: Float) :
         GimmickTile(ShowdownMoveset.Gimmick.TERASTALLIZATION, moveSelection, move, x, y) {
         init {
-            val pokemon =
-                moveSelection.request.activePokemon.actor.pokemon.firstOrNull { it.uuid == moveSelection.request.activePokemon.battlePokemon?.uuid }
+            val pokemon = moveSelection.request.activePokemon.actor.pokemon
+                .firstOrNull { it.uuid == moveSelection.request.activePokemon.battlePokemon?.uuid }
             if (pokemon?.types?.contains(this.elementalType) != true)
                 rgb = Triple(rgb.first - 0.1, rgb.second - 0.1, rgb.third - 0.1)
 

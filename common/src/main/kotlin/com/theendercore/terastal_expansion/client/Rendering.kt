@@ -51,3 +51,21 @@ fun summeryScreenIcon(ctx: GuiGraphics, type: TeraType, matrices: PoseStack, x: 
         centeredX = true
     ).render(ctx)
 }
+
+/*
+fun battleOverlayIcon(
+    ctx: GuiGraphics,
+    pokemon: ActiveClientBattlePokemon,
+    x: Int,
+    y: Int,
+    revered: Boolean,
+    isCompact: Boolean
+) {
+    val mc = Minecraft.getInstance()
+    val id = pokemon.battlePokemon!!.uuid
+    val type = pokemon.actor.pokemon.find { it.uuid == id }?.getTerastallizedType()
+    if (type != null) ctx.drawCenteredString(mc.font, type.displayName, x, y, 0xFFFFFF)
+    val locX =
+        if (!revered) x + 10 else mc.window.guiScaledWidth - x - if (isCompact) COMPACT_TILE_WIDTH else TILE_WIDTH
+    ctx.drawCenteredString(mc.font, "Location Test", x, y, 0xFFFFFF)
+}*/

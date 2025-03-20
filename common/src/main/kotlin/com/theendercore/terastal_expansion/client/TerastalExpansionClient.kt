@@ -8,7 +8,6 @@ object TerastalExpansionClient {
     private lateinit var implementation: TerastalClientImplementation
     fun init(implementation: TerastalClientImplementation) {
         this.implementation = implementation
-
         registerBlockRenderTypes()
     }
 
@@ -19,5 +18,4 @@ object TerastalExpansionClient {
         TerastalBlocks.MEDIUM_BUDDING_TERA_SHARD,
         TerastalBlocks.SMALL_BUDDING_TERA_SHARD,
     )
-
 }
