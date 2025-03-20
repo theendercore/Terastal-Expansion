@@ -2,17 +2,14 @@ package com.theendercore.terastal_expansion.mixin;
 
 import com.cobblemon.mod.common.api.types.tera.elemental.ElementalTypeTeraType;
 import com.cobblemon.mod.common.api.types.tera.gimmick.StellarTeraType;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin({ElementalTypeTeraType.class, StellarTeraType.class})
+@Mixin(value = {ElementalTypeTeraType.class, StellarTeraType.class}, remap = false)
 public class TeraTypeMixin {
-
-    @Inject(method = "showdownId", at = @At("RETURN"), remap = false, cancellable = true)
-    void x(CallbackInfoReturnable<String> cir) {
-        var x = cir.getReturnValue();
-        cir.setReturnValue((x.charAt(0) + "").toUpperCase() + x.substring(1));
+    @ModifyReturnValue(method = "showdownId", at = @At("RETURN"))
+    String fixShowdownId(String id) {
+        return (id.charAt(0) + "").toUpperCase() + id.substring(1);
     }
 }

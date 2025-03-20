@@ -22,8 +22,8 @@ public abstract class PokemonRendererMixin<T extends Entity> extends EntityRende
     }
 
     @Inject(method = "render(Lcom/cobblemon/mod/common/entity/pokemon/PokemonEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At("TAIL"))
-    void debugText(PokemonEntity entity, float entityYaw, float partialTicks, PoseStack poseMatrix, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {
-        var terastallizedType = getTerastallizedType(entity.getPokemon());
-        if (terastallizedType != null) teraTypeRenderer(entity, terastallizedType);
+    void spawnParticles(PokemonEntity entity, float entityYaw, float partialTicks, PoseStack poseMatrix, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {
+        var teraType = getTerastallizedType(entity.getPokemon());
+        if (teraType != null) teraTypeRenderer(entity, teraType);
     }
 }
