@@ -1,0 +1,6 @@
+{
+	"parent": "terastal_expansion:item/template/hat",
+	"textures": {
+		"color": "terastal_expansion:item/hat/fire"
+	}
+}

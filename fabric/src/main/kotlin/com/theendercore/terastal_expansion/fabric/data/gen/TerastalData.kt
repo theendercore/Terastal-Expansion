@@ -6,6 +6,7 @@ import com.theendercore.terastal_expansion.data.TerastalWorldGen.TERA_SHARD_GEOD
 import com.theendercore.terastal_expansion.data.TerastalWorldGen.TERA_SHARD_GEODE_CFG
 import com.theendercore.terastal_expansion.init.TerastalBlocks
 import com.theendercore.terastal_expansion.init.TerastalTabs
+import com.theendercore.terastal_expansion.item.TeraHatItem
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
@@ -176,7 +177,7 @@ class TModels(o: Pack) : FabricModelProvider(o) {
     }
 
     override fun generateItemModels(gen: ItemModelGenerators) =
-        TItems.all().filter { it !is BlockItem }.forEach(gen::registerPlain)
+        TItems.all().filter { it !is BlockItem && it !is TeraHatItem }.forEach(gen::registerPlain)
 }
 
 class EnLang(o: Pack, r: FutureLookup) : FabricLanguageProvider(o, r) {

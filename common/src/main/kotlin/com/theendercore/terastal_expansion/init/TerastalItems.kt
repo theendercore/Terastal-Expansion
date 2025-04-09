@@ -6,6 +6,7 @@ import com.cobblemon.mod.common.item.CobblemonItem
 import com.cobblemon.mod.common.item.TumblestoneItem
 import com.theendercore.terastal_expansion.init.TerastalBlocks.SMALL_BUDDING_TERA_SHARD
 import com.theendercore.terastal_expansion.item.TeraGemItem
+import com.theendercore.terastal_expansion.item.TeraHatItem
 import com.theendercore.terastal_expansion.item.TeraOrbItem
 import com.theendercore.terastal_expansion.item.TerastallizerItem
 import com.theendercore.terastal_expansion.registry.TPlatformRegistry
@@ -147,6 +148,65 @@ object TerastalItems : TPlatformRegistry<Registry<Item>, ResourceKey<Registry<It
 
     @JvmField
     val TERASTALLIZER = create("terastallizer", TerastallizerItem())
+
+
+    @JvmField
+    val NORMAL_TERA_HAT = create("normal_tera_hat", TeraHatItem())
+
+    @JvmField
+    val FIRE_TERA_HAT = create("fire_tera_hat", TeraHatItem())
+
+    @JvmField
+    val WATER_TERA_HAT = create("water_tera_hat", TeraHatItem())
+
+    @JvmField
+    val ELECTRIC_TERA_HAT = create("electric_tera_hat", TeraHatItem())
+
+    @JvmField
+    val GRASS_TERA_HAT = create("grass_tera_hat", TeraHatItem())
+
+    @JvmField
+    val ICE_TERA_HAT = create("ice_tera_hat", TeraHatItem())
+
+    @JvmField
+    val FIGHTING_TERA_HAT = create("fighting_tera_hat", TeraHatItem())
+
+    @JvmField
+    val POISON_TERA_HAT = create("poison_tera_hat", TeraHatItem())
+
+    @JvmField
+    val GROUND_TERA_HAT = create("ground_tera_hat", TeraHatItem())
+
+    @JvmField
+    val FLYING_TERA_HAT = create("flying_tera_hat", TeraHatItem())
+
+    @JvmField
+    val PSYCHIC_TERA_HAT = create("psychic_tera_hat", TeraHatItem())
+
+    @JvmField
+    val BUG_TERA_HAT = create("bug_tera_hat", TeraHatItem())
+
+    @JvmField
+    val ROCK_TERA_HAT = create("rock_tera_hat", TeraHatItem())
+
+    @JvmField
+    val GHOST_TERA_HAT = create("ghost_tera_hat", TeraHatItem())
+
+    @JvmField
+    val DRAGON_TERA_HAT = create("dragon_tera_hat", TeraHatItem())
+
+    @JvmField
+    val DARK_TERA_HAT = create("dark_tera_hat", TeraHatItem())
+
+    @JvmField
+    val STEEL_TERA_HAT = create("steel_tera_hat", TeraHatItem())
+
+    @JvmField
+    val FAIRY_TERA_HAT = create("fairy_tera_hat", TeraHatItem())
+
+    @JvmField
+    val STELLAR_TERA_HAT = create("stellar_tera_hat", TeraHatItem())
+
 
     init {
         TerastalBlocks.register { id, block -> blockItem(id.path, block) }

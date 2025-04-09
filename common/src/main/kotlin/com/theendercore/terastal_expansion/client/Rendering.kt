@@ -7,12 +7,18 @@ import com.cobblemon.mod.common.client.gui.TypeIcon
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.mojang.blaze3d.vertex.PoseStack
 import com.theendercore.terastal_expansion.TerastalConst.id
+import com.theendercore.terastal_expansion.misc.getHat
 import com.theendercore.terastal_expansion.misc.getParticle
+import com.theendercore.terastal_expansion.misc.getTerastallizedType
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
+import net.minecraft.client.renderer.MultiBufferSource
+import net.minecraft.world.item.ItemDisplayContext
+import net.minecraft.world.item.Items
 
-fun teraTypeRenderer(entity: PokemonEntity, terastallizedType: TeraType) {
-    if (Minecraft.getInstance().isPaused) return
+fun particleSpawner(entity: PokemonEntity, terastallizedType: TeraType) {
+    val mc = Minecraft.getInstance()
+    if (mc.isPaused) return
 
     val size = entity.getDimensions(entity.pose)
     val world = entity.level()
@@ -29,7 +35,28 @@ fun teraTypeRenderer(entity: PokemonEntity, terastallizedType: TeraType) {
         entity.z + (random.nextDouble() - 0.5) * offset,
         0.0, 0.0, 0.0
     )
+
+
 }
+
+fun renderHat(entity: PokemonEntity, poseMatrix: PoseStack, buffer: MultiBufferSource, packedLight: Int) {
+    val mc = Minecraft.getInstance()
+    val size = entity.getDimensions(entity.pose)
+    val teraType = entity.pokemon.getTerastallizedType()
+    poseMatrix.pushPose()
+    poseMatrix.translate(0f, size.height + .75f, 0f)
+    mc.itemRenderer.renderStatic(
+        teraType?.getHat() ?: Items.AIR.defaultInstance,
+        ItemDisplayContext.FIXED,
+        packedLight, -1,
+        poseMatrix,
+        buffer,
+        mc.level,
+        0
+    )
+    poseMatrix.popPose()
+}
+
 
 private val teraResource = id("textures/gui/summary/tera.png")
 fun summeryScreenIcon(ctx: GuiGraphics, type: TeraType, matrices: PoseStack, x: Int, y: Int) {
@@ -51,21 +78,3 @@ fun summeryScreenIcon(ctx: GuiGraphics, type: TeraType, matrices: PoseStack, x: 
         centeredX = true
     ).render(ctx)
 }
-
-/*
-fun battleOverlayIcon(
-    ctx: GuiGraphics,
-    pokemon: ActiveClientBattlePokemon,
-    x: Int,
-    y: Int,
-    revered: Boolean,
-    isCompact: Boolean
-) {
-    val mc = Minecraft.getInstance()
-    val id = pokemon.battlePokemon!!.uuid
-    val type = pokemon.actor.pokemon.find { it.uuid == id }?.getTerastallizedType()
-    if (type != null) ctx.drawCenteredString(mc.font, type.displayName, x, y, 0xFFFFFF)
-    val locX =
-        if (!revered) x + 10 else mc.window.guiScaledWidth - x - if (isCompact) COMPACT_TILE_WIDTH else TILE_WIDTH
-    ctx.drawCenteredString(mc.font, "Location Test", x, y, 0xFFFFFF)
-}*/
