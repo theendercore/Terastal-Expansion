@@ -3,7 +3,7 @@ package com.theendercore.terastal_expansion.client
 import com.cobblemon.mod.common.api.gui.blitk
 import com.cobblemon.mod.common.api.types.tera.TeraType
 import com.cobblemon.mod.common.api.types.tera.elemental.ElementalTypeTeraType
-import com.cobblemon.mod.common.client.gui.TypeIcon
+import com.cobblemon.mod.common.api.types.tera.gimmick.StellarTeraType
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.mojang.blaze3d.vertex.PoseStack
 import com.theendercore.terastal_expansion.TerastalConst.id
@@ -59,6 +59,7 @@ fun renderHat(entity: PokemonEntity, poseMatrix: PoseStack, buffer: MultiBufferS
 
 
 private val teraResource = id("textures/gui/summary/tera.png")
+private val teraTypesResource = id("textures/gui/tera_types.png")
 fun summeryScreenIcon(ctx: GuiGraphics, type: TeraType, matrices: PoseStack, x: Int, y: Int) {
     val scale2 = 1f
     blitk(
@@ -70,11 +71,30 @@ fun summeryScreenIcon(ctx: GuiGraphics, type: TeraType, matrices: PoseStack, x: 
         height = 25,
         scale = scale2
     )
-    if (type is ElementalTypeTeraType) TypeIcon(
-        x = x - 10.5,
-        y = y + 123.5,
-        type = type.type,
-        secondaryType = null,
-        centeredX = true
-    ).render(ctx)
+    render(ctx, x - 10.5f, y + 123.5f, type)
+}
+
+fun render(ctx: GuiGraphics, x: Float, y: Float, type: TeraType) {
+    val diameter = 36
+    val scale = 0.5f
+    val offsetX = (diameter / 2) * scale
+
+    blitk(
+        matrixStack = ctx.pose(),
+        texture = teraTypesResource,
+        x = (x - offsetX) / scale,
+        y = y / scale,
+        height = diameter,
+        width = diameter,
+        uOffset = diameter * type.xMultiplier() + 0.1f,
+        textureWidth = diameter * 19,
+        blend = true,
+        scale = scale
+    )
+}
+
+fun TeraType.xMultiplier() = when (this) {
+    is ElementalTypeTeraType -> this.type.textureXMultiplier + 1
+    is StellarTeraType -> 0
+    else -> error("Unknown tera type! $this")
 }
