@@ -71,23 +71,24 @@ fun summeryScreenIcon(ctx: GuiGraphics, type: TeraType, matrices: PoseStack, x: 
         height = 25,
         scale = scale2
     )
-    render(ctx, x - 10.5f, y + 123.5f, type)
+    render(ctx, x - 10.5f, y + 122f, type)
 }
 
 fun render(ctx: GuiGraphics, x: Float, y: Float, type: TeraType) {
-    val diameter = 36
-    val scale = 0.5f
-    val offsetX = (diameter / 2) * scale
+    val width = 46
+    val height = 52
+    val scale = 0.4f
+    val offsetX = (width / 2) * scale
 
     blitk(
         matrixStack = ctx.pose(),
         texture = teraTypesResource,
         x = (x - offsetX) / scale,
         y = y / scale,
-        height = diameter,
-        width = diameter,
-        uOffset = diameter * type.xMultiplier() + 0.1f,
-        textureWidth = diameter * 19,
+        height = height,
+        width = width,
+        uOffset = width * type.xMultiplier() + 0.1f,
+        textureWidth = width * 19,
         blend = true,
         scale = scale
     )
