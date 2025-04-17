@@ -6,6 +6,7 @@ import com.cobblemon.mod.common.api.types.tera.elemental.ElementalTypeTeraType
 import com.cobblemon.mod.common.api.types.tera.gimmick.StellarTeraType
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.mojang.blaze3d.vertex.PoseStack
+import com.mojang.math.Axis
 import com.theendercore.terastal_expansion.TerastalConst.id
 import com.theendercore.terastal_expansion.misc.getHat
 import com.theendercore.terastal_expansion.misc.getParticle
@@ -13,6 +14,7 @@ import com.theendercore.terastal_expansion.misc.getTerastallizedType
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.renderer.MultiBufferSource
+import net.minecraft.util.Mth
 import net.minecraft.world.item.ItemDisplayContext
 import net.minecraft.world.item.Items
 
@@ -39,22 +41,27 @@ fun particleSpawner(entity: PokemonEntity, terastallizedType: TeraType) {
 
 }
 
-fun renderHat(entity: PokemonEntity, poseMatrix: PoseStack, buffer: MultiBufferSource, packedLight: Int) {
+fun renderHat(
+    entity: PokemonEntity, partialTicks: Float, stack: PoseStack, buffer: MultiBufferSource, packedLight: Int
+) {
     val mc = Minecraft.getInstance()
     val size = entity.getDimensions(entity.pose)
     val teraType = entity.pokemon.getTerastallizedType()
-    poseMatrix.pushPose()
-    poseMatrix.translate(0f, size.height + .75f, 0f)
+    stack.pushPose()
+    stack.translate(0f, size.height + .75f, 0f)
+    stack.rotateAround(
+        Axis.YN.rotationDegrees(Mth.lerp(partialTicks, entity.yBodyRotO, entity.yBodyRot)), 0f, 0f, 0f
+    )
     mc.itemRenderer.renderStatic(
         teraType?.getHat() ?: Items.AIR.defaultInstance,
         ItemDisplayContext.FIXED,
         packedLight, -1,
-        poseMatrix,
+        stack,
         buffer,
         mc.level,
         0
     )
-    poseMatrix.popPose()
+    stack.popPose()
 }
 
 

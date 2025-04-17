@@ -28,6 +28,6 @@ public abstract class PokemonRendererMixin<T extends Entity> extends EntityRende
     void spawnParticles(PokemonEntity entity, float entityYaw, float partialTicks, PoseStack poseMatrix, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {
         var teraType = getTerastallizedType(entity.getPokemon());
         if (teraType != null) particleSpawner(entity, teraType);
-        renderHat(entity, poseMatrix, buffer, packedLight);
+        renderHat(entity, partialTicks,poseMatrix, buffer, packedLight);
     }
 }
