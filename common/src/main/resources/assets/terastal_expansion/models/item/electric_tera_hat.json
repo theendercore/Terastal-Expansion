@@ -1,0 +1,89 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "terastal_expansion:item/template/hat",
+	"textures": {
+		"1": "terastal_expansion:item/hat/electric_tera_hat",
+		"particle": "terastal_expansion:item/hat/electric_tera_hat_bulb",
+		"bulb": "terastal_expansion:item/hat/electric_tera_hat_bulb"
+	},
+	"elements": [
+		{
+			"name": "gem",
+			"from": [7, -0.5, 5.98],
+			"to": [9, 2.5, 5.98],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 6]},
+			"faces": {
+				"north": {"uv": [14, 0, 16, 3], "texture": "#1"},
+				"south": {"uv": [14, 0, 16, 3], "texture": "#1"}
+			}
+		},
+		{
+			"name": "base",
+			"from": [6, 0, 6],
+			"to": [10, 2, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [10, 4, 14, 6], "texture": "#1"},
+				"east": {"uv": [10, 4, 14, 6], "texture": "#1"},
+				"south": {"uv": [10, 4, 14, 6], "texture": "#1"},
+				"west": {"uv": [10, 4, 14, 6], "texture": "#1"},
+				"up": {"uv": [10, 0, 14, 4], "texture": "#1"},
+				"down": {"uv": [10, 0, 14, 4], "texture": "#1"}
+			}
+		},
+		{
+			"name": "shape",
+			"from": [3, 6, 3],
+			"to": [13, 16, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 6, 3]},
+			"faces": {
+				"north": {"uv": [0, 0, 10, 10], "texture": "#bulb"},
+				"east": {"uv": [0, 0, 10, 10], "texture": "#bulb"},
+				"south": {"uv": [0, 0, 10, 10], "texture": "#bulb"},
+				"west": {"uv": [0, 0, 10, 10], "texture": "#bulb"},
+				"up": {"uv": [0, 0, 10, 10], "texture": "#bulb"},
+				"down": {"uv": [0, 0, 10, 10], "texture": "#bulb"}
+			}
+		},
+		{
+			"name": "connector",
+			"from": [6, 2, 6],
+			"to": [10, 6, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, 2, 6]},
+			"faces": {
+				"north": {"uv": [10, 0, 14, 4], "texture": "#bulb"},
+				"east": {"uv": [14, 0, 10, 4], "texture": "#bulb"},
+				"south": {"uv": [10, 0, 14, 4], "texture": "#bulb"},
+				"west": {"uv": [14, 0, 10, 4], "texture": "#bulb"}
+			}
+		},
+		{
+			"name": "png",
+			"from": [3, 4, 8],
+			"to": [13, 16, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 4, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 10, 12], "texture": "#1"},
+				"east": {"uv": [0, 0, 0, 12], "texture": "#1"},
+				"south": {"uv": [0, 0, 10, 12], "texture": "#1"},
+				"west": {"uv": [0, 0, 0, 12], "texture": "#1"},
+				"up": {"uv": [0, 0, 10, 0], "texture": "#1"},
+				"down": {"uv": [0, 0, 10, 0], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "base",
+			"origin": [8, 0, 8],
+			"color": 0,
+			"children": [0, 1]
+		},
+		{
+			"name": "bulb",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [2, 3, 4]
+		}
+	]
+}
