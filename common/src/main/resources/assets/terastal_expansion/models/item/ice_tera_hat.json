@@ -1,0 +1,77 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "terastal_expansion:item/template/hat",
+	"textures": {
+		"0": "terastal_expansion:item/hat/ice_tera_hat",
+		"1": "terastal_expansion:item/hat/ice_tera_hat_snowflake",
+		"particle": "terastal_expansion:item/hat/ice_tera_hat"
+	},
+	"elements": [
+		{
+			"name": "gem",
+			"from": [7, -0.5, 5.98],
+			"to": [9, 2.5, 5.98],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 6]},
+			"faces": {
+				"north": {"uv": [4, 0, 6, 3], "texture": "#0"},
+				"south": {"uv": [4, 0, 6, 3], "texture": "#0"}
+			}
+		},
+		{
+			"name": "base",
+			"from": [6, 0, 6],
+			"to": [10, 2, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 4, 4, 6], "texture": "#0"},
+				"east": {"uv": [0, 4, 4, 6], "texture": "#0"},
+				"south": {"uv": [0, 4, 4, 6], "texture": "#0"},
+				"west": {"uv": [0, 4, 4, 6], "texture": "#0"},
+				"up": {"uv": [0, 0, 4, 4], "texture": "#0"},
+				"down": {"uv": [0, 0, 4, 4], "texture": "#0"}
+			}
+		},
+		{
+			"name": "snow",
+			"from": [0, 7, 8],
+			"to": [16, 23, 8],
+			"rotation": {"angle": 45, "axis": "z", "origin": [8, 15, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 0, 16], "texture": "#1"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 0, 16], "texture": "#1"},
+				"up": {"uv": [0, 0, 16, 0], "texture": "#1"},
+				"down": {"uv": [0, 0, 16, 0], "texture": "#1"}
+			}
+		},
+		{
+			"name": "flake",
+			"from": [6, 13, 7.5],
+			"to": [10, 17, 8.5],
+			"rotation": {"angle": 45, "axis": "z", "origin": [8, 15, 8]},
+			"faces": {
+				"north": {"uv": [6, 6, 10, 10], "texture": "#1"},
+				"east": {"uv": [6, 6, 7, 10], "texture": "#1"},
+				"south": {"uv": [6, 6, 10, 10], "texture": "#1"},
+				"west": {"uv": [6, 6, 7, 10], "texture": "#1"},
+				"up": {"uv": [6, 6, 10, 7], "texture": "#1"},
+				"down": {"uv": [6, 6, 10, 7], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "base",
+			"origin": [8, 0, 8],
+			"color": 0,
+			"children": [0, 1]
+		},
+		{
+			"name": "snowflake",
+			"origin": [8, 0, 8],
+			"color": 0,
+			"children": [2, 3]
+		}
+	]
+}
