@@ -1,0 +1,73 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "terastal_expansion:item/template/hat",
+	"textures": {
+		"particle": "terastal_expansion:item/hat/psychic_tera_hat",
+		"base": "terastal_expansion:item/hat/psychic_tera_hat",
+		"eye": "terastal_expansion:item/hat/psychic_tera_hat_eye"
+	},
+	"elements": [
+		{
+			"name": "gem",
+			"from": [7, -0.5, 5.98],
+			"to": [9, 2.5, 5.98],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 6]},
+			"faces": {
+				"north": {"uv": [4, 0, 6, 3], "texture": "#base"},
+				"south": {"uv": [4, 0, 6, 3], "texture": "#base"}
+			}
+		},
+		{
+			"name": "base",
+			"from": [6, 0, 6],
+			"to": [10, 2, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 4, 4, 6], "texture": "#base"},
+				"east": {"uv": [0, 4, 4, 6], "texture": "#base"},
+				"south": {"uv": [0, 4, 4, 6], "texture": "#base"},
+				"west": {"uv": [0, 4, 4, 6], "texture": "#base"},
+				"up": {"uv": [0, 0, 4, 4], "texture": "#base"},
+				"down": {"uv": [0, 0, 4, 4], "texture": "#base"}
+			}
+		},
+		{
+			"name": "outline",
+			"from": [0, 3, 8],
+			"to": [16, 19, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 3, 7]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#eye"},
+				"south": {"uv": [16, 0, 0, 16], "texture": "#eye"}
+			}
+		},
+		{
+			"name": "eyris",
+			"from": [5, 7, 5],
+			"to": [11, 13, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 10, 8]},
+			"faces": {
+				"north": {"uv": [5, 6, 11, 12], "texture": "#eye"},
+				"east": {"uv": [5, 6, 11, 12], "texture": "#eye"},
+				"south": {"uv": [5, 6, 11, 12], "texture": "#eye"},
+				"west": {"uv": [5, 6, 11, 12], "texture": "#eye"},
+				"up": {"uv": [5, 6, 11, 12], "texture": "#eye"},
+				"down": {"uv": [5, 6, 11, 12], "texture": "#eye"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "base",
+			"origin": [8, 0, 8],
+			"color": 0,
+			"children": [0, 1]
+		},
+		{
+			"name": "eye",
+			"origin": [8, 0, 8],
+			"color": 0,
+			"children": [2, 3]
+		}
+	]
+}
