@@ -1,0 +1,102 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "terastal_expansion:item/template/hat",
+	"textures": {
+		"1": "terastal_expansion:item/hat/bug_tera_hat_wing",
+		"particle": "terastal_expansion:item/hat/bug_tera_hat",
+		"base": "terastal_expansion:item/hat/bug_tera_hat"
+	},
+	"elements": [
+		{
+			"name": "gem",
+			"from": [7, -0.5, 5.98],
+			"to": [9, 2.5, 5.98],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 6]},
+			"faces": {
+				"north": {"uv": [13, 0, 15, 3], "texture": "#base"},
+				"south": {"uv": [13, 0, 15, 3], "texture": "#base"}
+			}
+		},
+		{
+			"name": "base",
+			"from": [6, 0, 6],
+			"to": [10, 2, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [9, 4, 13, 6], "texture": "#base"},
+				"east": {"uv": [9, 4, 13, 6], "texture": "#base"},
+				"south": {"uv": [9, 4, 13, 6], "texture": "#base"},
+				"west": {"uv": [9, 4, 13, 6], "texture": "#base"},
+				"up": {"uv": [9, 0, 13, 4], "texture": "#base"},
+				"down": {"uv": [9, 0, 13, 4], "texture": "#base"}
+			}
+		},
+		{
+			"name": "gem",
+			"from": [7, 2, 7],
+			"to": [9, 4, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 2, 7]},
+			"faces": {
+				"north": {"uv": [13, 4, 15, 6], "texture": "#base"},
+				"east": {"uv": [13, 4, 15, 6], "texture": "#base"},
+				"south": {"uv": [13, 4, 15, 6], "texture": "#base"},
+				"west": {"uv": [13, 4, 15, 6], "texture": "#base"},
+				"up": {"uv": [13, 4, 15, 6], "texture": "#base"}
+			}
+		},
+		{
+			"name": "wing",
+			"from": [7, 0, 9],
+			"to": [7, 9, 18],
+			"rotation": {"angle": -45, "axis": "y", "origin": [7, 0, 9]},
+			"faces": {
+				"east": {"uv": [9, 0, 0, 9], "texture": "#base"},
+				"west": {"uv": [0, 0, 9, 9], "texture": "#base"}
+			}
+		},
+		{
+			"name": "wing",
+			"from": [9, 0, 9],
+			"to": [9, 9, 18],
+			"rotation": {"angle": 45, "axis": "y", "origin": [9, 0, 9]},
+			"faces": {
+				"east": {"uv": [9, 0, 0, 9], "texture": "#base"},
+				"west": {"uv": [0, 0, 9, 9], "texture": "#base"}
+			}
+		},
+		{
+			"name": "anten",
+			"from": [8, 3, -4],
+			"to": [8, 17, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 3, 8]},
+			"faces": {
+				"east": {"uv": [0, 0, 12, 14], "texture": "#1"},
+				"west": {"uv": [12, 0, 0, 14], "texture": "#1"}
+			}
+		},
+		{
+			"name": "anten",
+			"from": [8, 3, -4],
+			"to": [8, 17, 8],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 3, 8]},
+			"faces": {
+				"east": {"uv": [0, 0, 12, 14], "texture": "#1"},
+				"west": {"uv": [12, 0, 0, 14], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "base",
+			"origin": [8, 0, 8],
+			"color": 0,
+			"children": [0, 1]
+		},
+		{
+			"name": "antena",
+			"origin": [8, 0, 8],
+			"color": 0,
+			"children": [2, 3, 4, 5, 6]
+		}
+	]
+}
