@@ -70,9 +70,9 @@
 		},
 		{
 			"name": "wing11",
-			"from": [-2, 9, 11],
-			"to": [5, 19, 11],
-			"rotation": {"angle": 0, "axis": "y", "origin": [5, 16, 9]},
+			"from": [-2, 9, 11.1],
+			"to": [5, 19, 11.1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [5, 16, 9.1]},
 			"faces": {
 				"north": {"uv": [0, 8, 3.5, 13], "texture": "#heart"},
 				"south": {"uv": [3.5, 8, 0, 13], "texture": "#heart"}
@@ -80,9 +80,9 @@
 		},
 		{
 			"name": "wing12",
-			"from": [-9, 9, 11],
-			"to": [-2, 19, 11],
-			"rotation": {"angle": -22.5, "axis": "y", "origin": [-2, 14, 11]},
+			"from": [-9, 9, 11.1],
+			"to": [-2, 19, 11.1],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [-2, 14, 11.1]},
 			"faces": {
 				"north": {"uv": [3.5, 8, 7, 13], "texture": "#heart"},
 				"south": {"uv": [7, 8, 3.5, 13], "texture": "#heart"}
@@ -90,9 +90,9 @@
 		},
 		{
 			"name": "wing21",
-			"from": [11, 9, 11],
-			"to": [18, 19, 11],
-			"rotation": {"angle": 0, "axis": "y", "origin": [11, 16, 9]},
+			"from": [11, 9, 11.1],
+			"to": [18, 19, 11.1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [11, 16, 9.1]},
 			"faces": {
 				"north": {"uv": [3.5, 8, 0, 13], "texture": "#heart"},
 				"south": {"uv": [0, 8, 3.5, 13], "texture": "#heart"}
@@ -100,9 +100,9 @@
 		},
 		{
 			"name": "wing22",
-			"from": [18, 9, 11],
-			"to": [25, 19, 11],
-			"rotation": {"angle": 22.5, "axis": "y", "origin": [18, 14, 11]},
+			"from": [18, 9, 11.1],
+			"to": [25, 19, 11.1],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [18, 14, 11.1]},
 			"faces": {
 				"north": {"uv": [7, 8, 3.5, 13], "texture": "#heart"},
 				"south": {"uv": [3.5, 8, 7, 13], "texture": "#heart"}
