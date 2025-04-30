@@ -1,0 +1,124 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "terastal_expansion:item/template/hat",
+	"textures": {
+		"particle": "terastal_expansion:item/hat/ghost_tera_hat",
+		"base": "terastal_expansion:item/hat/ghost_tera_hat",
+		"ghast": "terastal_expansion:item/hat/ghost_tera_hat_ghast"
+	},
+	"elements": [
+		{
+			"name": "gem",
+			"from": [7, -0.5, 5.98],
+			"to": [9, 2.5, 5.98],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 6]},
+			"faces": {
+				"north": {"uv": [4, 3, 6, 0], "texture": "#base"},
+				"south": {"uv": [6, 3, 4, 0], "texture": "#base"}
+			}
+		},
+		{
+			"name": "base",
+			"from": [6, 0, 6],
+			"to": [10, 2, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 4, 4, 6], "texture": "#base"},
+				"east": {"uv": [0, 4, 4, 6], "texture": "#base"},
+				"south": {"uv": [0, 4, 4, 6], "texture": "#base"},
+				"west": {"uv": [0, 4, 4, 6], "texture": "#base"},
+				"up": {"uv": [0, 0, 4, 4], "texture": "#base"},
+				"down": {"uv": [0, 0, 4, 4], "texture": "#base"}
+			}
+		},
+		{
+			"name": "base",
+			"from": [4, 7.5, 4],
+			"to": [12, 15.5, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [4, 7.5, 4]},
+			"faces": {
+				"north": {"uv": [4, 0, 8, 4], "texture": "#ghast"},
+				"east": {"uv": [0, 0, 4, 4], "texture": "#ghast"},
+				"south": {"uv": [0, 0, 4, 4], "texture": "#ghast"},
+				"west": {"uv": [0, 0, 4, 4], "texture": "#ghast"},
+				"up": {"uv": [0, 0, 4, 4], "texture": "#ghast"},
+				"down": {"uv": [0, 0, 4, 4], "texture": "#ghast"}
+			}
+		},
+		{
+			"name": "tail1",
+			"from": [5, 5.5, 5],
+			"to": [11, 7.5, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [5, 5.5, 5]},
+			"faces": {
+				"north": {"uv": [0, 7, 3, 8], "texture": "#ghast"},
+				"east": {"uv": [0, 7, 3, 8], "texture": "#ghast"},
+				"south": {"uv": [0, 7, 3, 8], "texture": "#ghast"},
+				"west": {"uv": [0, 7, 3, 8], "texture": "#ghast"},
+				"down": {"uv": [0, 4, 3, 7], "texture": "#ghast"}
+			}
+		},
+		{
+			"name": "tail1",
+			"from": [6.25, 2, 8],
+			"to": [11.25, 7, 8],
+			"rotation": {"angle": 45, "axis": "z", "origin": [8.25, 3.5, 8]},
+			"faces": {
+				"north": {"uv": [3, 4, 5.5, 6.5], "texture": "#ghast"},
+				"south": {"uv": [5.5, 4, 3, 6.5], "texture": "#ghast"}
+			}
+		},
+		{
+			"name": "hand1",
+			"from": [10, 6.5, 2.5],
+			"to": [13, 10.5, 4.5],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [11, 10.5, 4.5]},
+			"faces": {
+				"north": {"uv": [1, 9, 2.5, 11], "texture": "#ghast"},
+				"east": {"uv": [0, 9, 1, 11], "texture": "#ghast"},
+				"south": {"uv": [3.5, 9, 5, 11], "texture": "#ghast"},
+				"west": {"uv": [2.5, 9, 3.5, 11], "texture": "#ghast"},
+				"up": {"uv": [1, 8, 2.5, 9], "texture": "#ghast"},
+				"down": {"uv": [3.5, 8, 5, 9], "texture": "#ghast"}
+			}
+		},
+		{
+			"name": "hand2",
+			"from": [3, 6.5, 2.5],
+			"to": [6, 10.5, 4.5],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [5, 10.5, 4.5]},
+			"faces": {
+				"north": {"uv": [2.5, 9, 1, 11], "texture": "#ghast"},
+				"east": {"uv": [3.5, 9, 2.5, 11], "texture": "#ghast"},
+				"south": {"uv": [5, 9, 3.5, 11], "texture": "#ghast"},
+				"west": {"uv": [1, 9, 0, 11], "texture": "#ghast"},
+				"up": {"uv": [2.5, 8, 1, 9], "texture": "#ghast"},
+				"down": {"uv": [5, 8, 3.5, 9], "texture": "#ghast"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "base",
+			"origin": [8, 0, 8],
+			"color": 0,
+			"children": [0, 1]
+		},
+		{
+			"name": "ghast",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [
+				2,
+				3,
+				4,
+				{
+					"name": "hands",
+					"origin": [8, 8, 8],
+					"color": 0,
+					"children": [5, 6]
+				}
+			]
+		}
+	]
+}
