@@ -13,7 +13,7 @@
 			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 6]},
 			"faces": {
 				"north": {"uv": [11, 0, 13, 3], "texture": "#base"},
-				"south": {"uv": [11, 0, 13, 3], "texture": "#base"}
+				"south": {"uv": [13, 0, 11, 3], "texture": "#base"}
 			}
 		},
 		{
