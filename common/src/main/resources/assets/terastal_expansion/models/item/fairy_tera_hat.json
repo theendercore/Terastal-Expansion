@@ -1,0 +1,135 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "terastal_expansion:item/template/hat",
+	"textures": {
+		"heart": "terastal_expansion:item/hat/fairy_tera_hat_heart",
+		"particle": "terastal_expansion:item/hat/fairy_tera_hat",
+		"base": "terastal_expansion:item/hat/fairy_tera_hat"
+	},
+	"elements": [
+		{
+			"name": "gem",
+			"from": [7, 0.5, 5.95],
+			"to": [9, 3.5, 5.95],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 1, 6]},
+			"faces": {
+				"north": {"uv": [4, 0, 6, 3], "texture": "#base"},
+				"south": {"uv": [6, 0, 4, 3], "texture": "#base"}
+			}
+		},
+		{
+			"name": "base",
+			"from": [6, 0, 6],
+			"to": [10, 2, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 4, 4, 6], "texture": "#base"},
+				"east": {"uv": [0, 4, 4, 6], "texture": "#base"},
+				"south": {"uv": [0, 4, 4, 6], "texture": "#base"},
+				"west": {"uv": [0, 4, 4, 6], "texture": "#base"},
+				"up": {"uv": [0, 0, 4, 4], "texture": "#base"},
+				"down": {"uv": [0, 0, 4, 4], "texture": "#base"}
+			}
+		},
+		{
+			"name": "bow",
+			"from": [4, -1, 5.98],
+			"to": [12, 4, 5.98],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, -0.5, 6]},
+			"faces": {
+				"north": {"uv": [0, 6, 8, 11], "texture": "#base"},
+				"south": {"uv": [8, 6, 0, 11], "texture": "#base"}
+			}
+		},
+		{
+			"name": "h1",
+			"from": [8, 2, 6],
+			"to": [15, 13, 11],
+			"rotation": {"angle": 45, "axis": "z", "origin": [8, 2, 8]},
+			"faces": {
+				"north": {"uv": [2.5, 2.5, 6, 8], "texture": "#heart"},
+				"east": {"uv": [0, 2.5, 2.5, 8], "texture": "#heart"},
+				"south": {"uv": [6, 2.5, 2.5, 8], "texture": "#heart"},
+				"west": {"uv": [6, 2.5, 8.5, 8], "texture": "#heart"},
+				"up": {"uv": [2.5, 0, 6, 2.5], "texture": "#heart"},
+				"down": {"uv": [6, 4.5, 8.5, 8], "rotation": 90, "texture": "#heart"}
+			}
+		},
+		{
+			"name": "h2",
+			"from": [1, 9, 6],
+			"to": [8, 13, 11],
+			"rotation": {"angle": -45, "axis": "z", "origin": [8, 2, 8]},
+			"faces": {
+				"north": {"uv": [6, 2.5, 2.5, 4.5], "texture": "#heart"},
+				"east": {"uv": [8.5, 2.5, 6, 4.5], "texture": "#heart"},
+				"south": {"uv": [2.5, 2.5, 6, 4.5], "texture": "#heart"},
+				"west": {"uv": [2.5, 2.5, 0, 4.5], "texture": "#heart"},
+				"up": {"uv": [6, 0, 2.5, 2.5], "texture": "#heart"}
+			}
+		},
+		{
+			"name": "wing11",
+			"from": [-2, 9, 11],
+			"to": [5, 19, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [5, 16, 9]},
+			"faces": {
+				"north": {"uv": [0, 8, 3.5, 13], "texture": "#heart"},
+				"south": {"uv": [3.5, 8, 0, 13], "texture": "#heart"}
+			}
+		},
+		{
+			"name": "wing12",
+			"from": [-9, 9, 11],
+			"to": [-2, 19, 11],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [-2, 14, 11]},
+			"faces": {
+				"north": {"uv": [3.5, 8, 7, 13], "texture": "#heart"},
+				"south": {"uv": [7, 8, 3.5, 13], "texture": "#heart"}
+			}
+		},
+		{
+			"name": "wing21",
+			"from": [11, 9, 11],
+			"to": [18, 19, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [11, 16, 9]},
+			"faces": {
+				"north": {"uv": [3.5, 8, 0, 13], "texture": "#heart"},
+				"south": {"uv": [0, 8, 3.5, 13], "texture": "#heart"}
+			}
+		},
+		{
+			"name": "wing22",
+			"from": [18, 9, 11],
+			"to": [25, 19, 11],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [18, 14, 11]},
+			"faces": {
+				"north": {"uv": [7, 8, 3.5, 13], "texture": "#heart"},
+				"south": {"uv": [3.5, 8, 7, 13], "texture": "#heart"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "base",
+			"origin": [8, 0, 8],
+			"color": 0,
+			"children": [0, 1, 2]
+		},
+		{
+			"name": "heart",
+			"origin": [8, 0, 8],
+			"color": 0,
+			"children": [
+				3,
+				4,
+				{
+					"name": "wings",
+					"origin": [8, 0, 8],
+					"color": 0,
+					"children": [5, 6, 7, 8]
+				}
+			]
+		}
+	]
+}
