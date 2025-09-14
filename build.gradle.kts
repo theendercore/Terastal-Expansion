@@ -47,11 +47,19 @@ allprojects {
     repositories {
         mavenCentral()
         maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
-        maven("https://maven.impactdev.net/repository/development/")
-        maven("https://maven.terraformersmc.com/")
         maven("https://maven.parchmentmc.org")
+        maven("https://maven.terraformersmc.com/")
         maven("https://maven.neoforged.net/releases")
         maven("https://thedarkcolour.github.io/KotlinForForge/")
+
+        exclusiveContent {
+            forRepository {
+                maven("https://maven.impactdev.net/repository/development/")
+            }
+            filter {
+                includeGroup("com.cobblemon")
+            }
+        }
 
 //        maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
 //        maven("https://hub.spigotmc.org/nexus/content/groups/public/")

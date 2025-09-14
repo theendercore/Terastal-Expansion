@@ -1,6 +1,8 @@
 {
+	"format_version": "1.21.1",
 	"credit": "Made with Blockbench",
 	"parent": "terastal_expansion:item/template/hat",
+	"texture_size": [17, 17],
 	"textures": {
 		"particle": "terastal_expansion:item/hat/psychic_tera_hat",
 		"base": "terastal_expansion:item/hat/psychic_tera_hat",
@@ -37,22 +39,22 @@
 			"to": [16, 19, 8],
 			"rotation": {"angle": 0, "axis": "y", "origin": [0, 3, 7]},
 			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#eye"},
-				"south": {"uv": [16, 0, 0, 16], "texture": "#eye"}
+				"north": {"uv": [0, 0, 15.05882, 16], "texture": "#eye"},
+				"south": {"uv": [15.05882, 0, 0, 16], "texture": "#eye"}
 			}
 		},
 		{
 			"name": "eyris",
-			"from": [5, 7, 5],
-			"to": [11, 13, 11],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 10, 8]},
+			"from": [5, 6.4, 5],
+			"to": [11, 12.4, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9.4, 8]},
 			"faces": {
-				"north": {"uv": [5, 6, 11, 12], "texture": "#eye"},
-				"east": {"uv": [5, 6, 11, 12], "texture": "#eye"},
-				"south": {"uv": [5, 6, 11, 12], "texture": "#eye"},
-				"west": {"uv": [5, 6, 11, 12], "texture": "#eye"},
-				"up": {"uv": [5, 6, 11, 12], "texture": "#eye"},
-				"down": {"uv": [5, 6, 11, 12], "texture": "#eye"}
+				"north": {"uv": [4.70588, 6.58824, 10.35294, 12.23529], "texture": "#eye"},
+				"east": {"uv": [4.70588, 6.58824, 10.35294, 12.23529], "texture": "#eye"},
+				"south": {"uv": [4.70588, 6.58824, 10.35294, 12.23529], "texture": "#eye"},
+				"west": {"uv": [4.70588, 6.58824, 10.35294, 12.23529], "texture": "#eye"},
+				"up": {"uv": [4.70588, 6.58824, 10.35294, 12.23529], "texture": "#eye"},
+				"down": {"uv": [4.70588, 6.58824, 10.35294, 12.23529], "texture": "#eye"}
 			}
 		}
 	],

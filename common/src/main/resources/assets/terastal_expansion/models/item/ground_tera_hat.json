@@ -1,4 +1,5 @@
 {
+	"format_version": "1.21.1",
 	"credit": "Made with Blockbench",
 	"parent": "terastal_expansion:item/template/hat",
 	"texture_size": [32, 32],

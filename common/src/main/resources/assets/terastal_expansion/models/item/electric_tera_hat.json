@@ -1,4 +1,5 @@
 {
+	"format_version": "1.21.1",
 	"credit": "Made with Blockbench",
 	"parent": "terastal_expansion:item/template/hat",
 	"textures": {
@@ -59,13 +60,13 @@
 		},
 		{
 			"name": "png",
-			"from": [3, 4, 8],
-			"to": [13, 16, 8],
-			"rotation": {"angle": 0, "axis": "y", "origin": [3, 4, 8]},
+			"from": [3, 2, 8],
+			"to": [13, 17, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 2, 8]},
 			"faces": {
-				"north": {"uv": [0, 0, 10, 12], "texture": "#1"},
+				"north": {"uv": [0, 0, 10, 15], "texture": "#1"},
 				"east": {"uv": [0, 0, 0, 12], "texture": "#1"},
-				"south": {"uv": [0, 0, 10, 12], "texture": "#1"},
+				"south": {"uv": [0, 0, 10, 15], "texture": "#1"},
 				"west": {"uv": [0, 0, 0, 12], "texture": "#1"},
 				"up": {"uv": [0, 0, 10, 0], "texture": "#1"},
 				"down": {"uv": [0, 0, 10, 0], "texture": "#1"}
