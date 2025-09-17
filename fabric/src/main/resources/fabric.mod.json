@@ -5,7 +5,8 @@
   "name": "${mod_name}",
   "description": "${description}",
   "authors": [
-    "${mod_author}"
+    "${mod_author}",
+    "Autumn"
   ],
   "mixins": [
     "terastal_expansion.common.mixins.json"
