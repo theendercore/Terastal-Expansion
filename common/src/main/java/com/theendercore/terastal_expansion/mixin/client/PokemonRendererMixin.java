@@ -26,6 +26,7 @@ public abstract class PokemonRendererMixin<T extends Entity> extends EntityRende
 
     @Inject(method = "render(Lcom/cobblemon/mod/common/entity/pokemon/PokemonEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At(value = "HEAD"))
     void spawnParticles(PokemonEntity entity, float entityYaw, float partialTicks, PoseStack poseMatrix, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {
+        if (entity.getBeamMode() != 0) return;
         var teraType = getTerastallizedType(entity.getPokemon());
         if (teraType != null) particleSpawner(entity, teraType);
         renderHat(entity, partialTicks,poseMatrix, buffer, packedLight);

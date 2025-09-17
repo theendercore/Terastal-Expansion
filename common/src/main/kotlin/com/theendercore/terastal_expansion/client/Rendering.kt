@@ -37,8 +37,6 @@ fun particleSpawner(entity: PokemonEntity, terastallizedType: TeraType) {
         entity.z + (random.nextDouble() - 0.5) * offset,
         0.0, 0.0, 0.0
     )
-
-
 }
 
 fun renderHat(
