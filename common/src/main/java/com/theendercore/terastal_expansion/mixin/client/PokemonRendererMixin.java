@@ -18,7 +18,7 @@ import static com.theendercore.terastal_expansion.client.RenderingKt.renderHat;
 import static com.theendercore.terastal_expansion.misc.HelpersKt.getTerastallizedType;
 
 @Debug(export = true)
-@Mixin(value = PokemonRenderer.class, remap = false)
+@Mixin(value = PokemonRenderer.class)
 public abstract class PokemonRendererMixin<T extends Entity> extends EntityRenderer<T> {
     protected PokemonRendererMixin(EntityRendererProvider.Context context) {
         super(context);
@@ -29,6 +29,6 @@ public abstract class PokemonRendererMixin<T extends Entity> extends EntityRende
         if (entity.getBeamMode() != 0) return;
         var teraType = getTerastallizedType(entity.getPokemon());
         if (teraType != null) particleSpawner(entity, teraType);
-        renderHat(entity, partialTicks,poseMatrix, buffer, packedLight);
+        renderHat(entity, partialTicks, poseMatrix, buffer, packedLight);
     }
 }
